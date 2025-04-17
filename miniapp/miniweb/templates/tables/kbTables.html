@@ -72,10 +72,37 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="data-table-list">
                         <div class="basic-tb-hd">
-                            <h2>Kyounbow Tables</h2>
+                            <h2>
+                              {% if tableNm == "diseaseByPopulation" %}
+                              연도별지역별인구질병통계 
+                              {% elif tableNm == "populationByYear" %}
+                              연도별인구통계
+                              {% elif tableNm == "diseaseByAge" %}
+                              질병성별연령별통계
+                              {% elif tableNm == "diseaseByMedical" %}
+                              질병의료기관종별통계
+                              {% elif tableNm == "diseaseByRegion" %}
+                              질병의료기관지역별통계
+                              {% elif tableNm == "diseaseByVisitType" %}
+                              질병입원외래별통계
+                              {% endif %}
+                              테이블
+                            </h2>
                             <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                    {{ tableNm }}
+                                    {% if tableNm == "diseaseByPopulation" %}
+                                    연도별지역별인구질병통계
+                                    {% elif tableNm == "populationByYear" %}
+                                    연도별인구통계
+                                    {% elif tableNm == "diseaseByAge" %}
+                                    질병성별연령별통계
+                                    {% elif tableNm == "diseaseByMedical" %}
+                                    질병의료기관종별통계
+                                    {% elif tableNm == "diseaseByRegion" %}
+                                    질병의료기관지역별통계
+                                    {% elif tableNm == "diseaseByVisitType" %}
+                                    질병입원외래별통계
+                                    {% endif %}
                                     <span class="caret">
                                     </span>
                                 </button>
@@ -221,9 +248,10 @@
     <!-- main JS
 		============================================ -->
     <script src="/static/js/main.js"></script>
-	<!-- tawk chat JS
+	  <!-- tawk chat JS
 		============================================ -->
     <script src="/static/js/tawk-chat.js"></script>
+    
 </body>
 
 </html>
