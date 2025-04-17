@@ -239,3 +239,211 @@ def select_column(tableNm):
 
 ###################################### kyoungbow area End ######################################
 
+
+##################################### Yeongseo's area Start #######################################
+
+import pymysql
+
+def create_ColdandTem_table():
+    try:
+        conn = pymysql.connect(host="localhost", 
+                               database='miniwebs', 
+                               user='humanda5', 
+                               password='humanda5')
+
+        cursor = conn.cursor()
+
+        sql="""drop table if exists ColdandTem"""
+        cursor.execute(sql)
+        
+        # 감기와 천식의 일교차와 연관성
+        sql="""create table  if not exists ColdandTem
+               (
+                   날짜 varchar(20) not null
+                   ,감기발생건수 int null
+                   ,천식발생건수 int null
+                   ,일교차 float null
+                );"""
+        cursor.execute(sql)
+
+        # 대기오염수치와 감기의 연관성
+        sql="""create table  if not exists ColdandAirPo
+               (
+                   날짜 varchar(20) not null
+                   ,시군구명 varchar(20) null
+                   ,발생건수 int null
+                   ,이산화질소농도 float null
+                   ,오존농도 float null
+                   ,일산화탄소농도 float null
+                   ,아황산가스농도 float null
+                   ,미세먼지농도 float null
+                   ,초미세먼지농도 float null
+                );"""
+        cursor.execute(sql)
+
+        # 대기오염수치와 천식의 연관성
+        sql="""create table  if not exists AsthmaandAirPo
+               (
+                   날짜 varchar(20) not null
+                   ,시군구명 varchar(20) null
+                   ,발생건수 int null
+                   ,이산화질소농도 float null
+                   ,오존농도 float null
+                   ,일산화탄소농도 float null
+                   ,아황산가스농도 float null
+                   ,미세먼지농도 float null
+                   ,초미세먼지농도 float null
+                );"""
+        cursor.execute(sql)
+
+        # 대기오염수치와 눈병의 연관성
+        sql="""create table  if not exists EyeandAirPo
+               (
+                   날짜 varchar(20) not null
+                   ,시군구명 varchar(20) null
+                   ,발생건수 int null
+                   ,이산화질소농도 float null
+                   ,오존농도 float null
+                   ,일산화탄소농도 float null
+                   ,아황산가스농도 float null
+                   ,미세먼지농도 float null
+                   ,초미세먼지농도 float null
+                );"""
+        cursor.execute(sql)
+
+        # 대기오염수치와 피부염의 연관성
+        sql="""create table  if not exists DermaandAirPo
+               (
+                   날짜 varchar(20) not null
+                   ,시군구명 varchar(20) null
+                   ,발생건수 int null
+                   ,이산화질소농도 float null
+                   ,오존농도 float null
+                   ,일산화탄소농도 float null
+                   ,아황산가스농도 float null
+                   ,미세먼지농도 float null
+                   ,초미세먼지농도 float null
+                );"""
+        cursor.execute(sql)
+
+    except Exception as e:
+        print('테이블 생성 실패', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+def insert_ColdandTem_data(data):
+    try:
+        conn = pymysql.connect(host="localhost", 
+                            database='miniwebs', 
+                            user='humanda5', 
+                            password='humanda5')
+
+        cursor = conn.cursor()
+
+        if 'df_ColdandTempDif' in data: 
+            sql = "insert into ColdandTem values (%s, %s, %s, %s)"
+            cursor.executemany(sql, data.get('df_ColdandTempDif').values.tolist())
+
+        if 'df_ColdandAirPo' in data: 
+            sql = "insert into ColdandAirPo values (%s, %s, %s, %s,%s, %s, %s, %s, %s)"
+            cursor.executemany(sql, data.get('df_ColdandAirPo').values.tolist())
+
+        if 'df_AsthmaandAirPo' in data: 
+            sql = "insert into AsthmaandAirPo values (%s, %s, %s, %s,%s, %s, %s, %s, %s)"
+            cursor.executemany(sql, data.get('df_AsthmaandAirPo').values.tolist())
+
+        if 'df_DermaandAirPo' in data: 
+            sql = "insert into DermaandAirPo values (%s, %s, %s, %s,%s, %s, %s, %s, %s)"
+            cursor.executemany(sql, data.get('df_DermaandAirPo').values.tolist())
+
+        if 'df_EyeandAirPo' in data: 
+            sql = "insert into EyeandAirPo values (%s, %s, %s, %s,%s, %s, %s, %s, %s)"
+            cursor.executemany(sql, data.get('df_EyeandAirPo').values.tolist())
+
+        conn.commit()
+    except Exception as e:
+        print('데이터 저장 실패', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+def select_ColdandTem():
+    rows = None
+    try:
+        conn = pymysql.connect(host="localhost", 
+                            database='miniwebs', 
+                            user='humanda5', 
+                            password='humanda5')
+
+        cursor = conn.cursor()
+
+        sql="select * from ColdandTem"
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+    except Exception as e:
+        print('데이터 저장 실패', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+    return rows
+
+
+def select_ColdandTem_by_page(offset, limit):
+    try:
+        conn = pymysql.connect(host="localhost", 
+                                database='miniwebs', 
+                                user='humanda5', 
+                                password='humanda5')
+        cursor = conn.cursor()
+
+        sql = f"SELECT * FROM ColdandTem LIMIT {offset}, {limit}"  # offset, limit을 이용하여 페이지네이션
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+
+        return rows
+    except Exception as e:
+        print(f"Error in select_ColdandTem_by_page: {e}")
+        return []
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+
+
+def select_ColdandTem_count():
+    cnt = None
+    try:
+        conn = pymysql.connect(host="localhost", 
+                               database='miniwebs', 
+                               user='humanda5', 
+                               password='humanda5')
+
+        cursor = conn.cursor()
+
+        sql = "select count(*) from ColdandTem"
+        cursor.execute(sql)
+        cnt = cursor.fetchone()
+        
+        if cnt:
+            return cnt[0]
+        return 0
+    except Exception as e:
+        print('데이터 조회 실패', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+##################################### Yeongseo's area End #######################################
