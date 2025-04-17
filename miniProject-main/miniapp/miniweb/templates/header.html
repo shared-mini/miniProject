@@ -1,0 +1,92 @@
+
+<div class="header-top-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="logo-area">
+                    <a href="/">
+                        <img src="/static/img/logo/logo.png" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Header Top Area -->
+<!-- Mobile Menu start -->
+<div class="mobile-menu-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mobile-menu">
+                    <nav id="dropdown">
+                        <ul class="mobile-menu-nav">
+                            <li><a data-toggle="collapse" data-target="#demolibra" href="#">Charts</a>
+                                <ul id="demolibra" class="collapse dropdown-header-top">
+                                    <li><a href="{{url_for('charts.kb')}}">경보 차트</a></li>
+                                    <li><a href="{{url_for('charts.ys')}}">영서 차트</a></li>
+                                    <li><a href="{{url_for('charts.yh')}}">윤환 차트</a></li>
+                                </ul>
+                            </li>
+                            <li><a data-toggle="collapse" data-target="#demodepart" href="#">Tables</a>
+                                <ul id="demodepart" class="collapse dropdown-header-top">
+                                    <li><a href="normal-table.html">Normal Table</a></li>
+                                    <li><a href="data-table.html">Data Table</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a data-toggle="collapse" data-target="#Pagemob" href="{{ url_for('auth.login')}}">Login Register</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Mobile Menu end -->
+<!-- Main Menu area start-->
+<div class="main-menu-area mg-tb-40">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                    <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
+                    </li>
+                    <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Tables</a>
+                    </li>
+                    <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Login Register</a>
+                    </li>
+                </ul>
+                <div class="tab-content custom-menu-content">
+                    <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="{{url_for('charts.kb')}}">경보차트</a>
+                            <li><a href="{{url_for('charts.ys')}}">영서차트</a>
+                            <li><a href="{{url_for('charts.yh')}}">윤환차트</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="Tables" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="{{url_for('tables.kbTables_with_page', tableNm='diseaseByPopulation')}}">경보테이블</a>
+                            </li>
+                            <li><a href="{{url_for('tables.ysTables_with_page', tableNm='ColdandTem')}}">영서테이블</a>
+                            </li>
+                            <li><a href="{{url_for('tables.yhTables')}}">윤환테이블</a>
+                            </li>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="{{ url_for('auth.login')}}">Login Register</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Menu area End-->
