@@ -102,6 +102,10 @@
                                     질병의료기관지역별통계
                                     {% elif tableNm == "diseaseByVisitType" %}
                                     질병입원외래별통계
+                                    {% elif tableNm == "area" %}
+                                    지역별토지면적
+                                    {% elif tableNm == "diseaseByArea" %}
+                                    토지별질병통계
                                     {% endif %}
                                     <span class="caret">
                                     </span>
@@ -135,6 +139,16 @@
                                     <li>
                                         <a href="{{url_for('tables.kbTables_with_page', tableNm='diseaseByVisitType')}}">
                                             질병입원외래별통계
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('tables.kbTables_with_page', tableNm='area')}}">
+                                            지역별토지면적
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('tables.kbTables_with_page', tableNm='diseaseByArea')}}">
+                                            토지별질병통계
                                         </a>
                                     </li>
                                 </ul>
