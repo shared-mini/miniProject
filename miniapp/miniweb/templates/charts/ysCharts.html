@@ -55,6 +55,7 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
 <body>
@@ -75,15 +76,12 @@
 										<i class="notika-icon notika-bar-chart"></i>
 									</div>
 									<div class="breadcomb-ctn">
-										<h2>Flot Charts</h2>
-										<p>Welcome to Notika <span class="bread-ntd">Admin Template</span></p>
+										<h2>상관관계 그래프</h2>
+										<p>일교차와 대기오염 <span class="bread-ntd"></span></p>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-3">
-								<div class="breadcomb-report">
-									<button data-toggle="tooltip" data-placement="left" title="Download Report" class="btn"><i class="notika-icon notika-sent"></i></button>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -96,32 +94,123 @@
     <div class="flot-chart-area">
         <div class="container">
             <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="flot-chart-wp">
+                  <div id="heatmap-chart" style="max-width: 600px; margin: auto;"></div>
+                </div>
+              </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <div class="flot-chart-wp">
+                    <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
+                      <select id="diseaseSelector1" class="form-control" style="max-width: 300px; margin: auto;">
+                        <option value="cold">감기</option>
+                        <option value="asthma">천식</option>
+                      </select>
+                    </div>
+                    <div id="heatmap-chart1" style="max-width: 600px; margin: auto;"></div>
+                  </div>
+                </div>
+            </div>
+            <div class="flot-chart-area">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="flot-chart-wp">
-                        <div id="curved-line-chart" class="flot-chart flot-ch-pg"></div>
+                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
+                        <select id="coldLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+                          <option value="cold_lag0">감기_lag0</option>
+                          <option value="cold_lag1">감기_lag1</option>
+                          <option value="cold_lag2">감기_lag2</option>
+                          <option value="cold_lag3">감기_lag3</option>
+                          <option value="cold_lag4">감기_lag4</option>
+                          <option value="cold_lag5">감기_lag5</option>
+                        </select>
+                      </div>
+                      <div id="heatmap-chart2" style="max-width: 600px; margin: auto;"></div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp sm-res-mg-t-30">
-                        <div id="line-chart" class="flot-chart flot-ch-pg"></div>
+                  </div>
+          
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="flot-chart-wp">
+                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
+                        <select id="asthmaLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+                          <option value="asthma_lag0">천식_lag0</option>
+                          <option value="asthma_lag1">천식_lag1</option>
+                          <option value="asthma_lag2">천식_lag2</option>
+                          <option value="asthma_lag3">천식_lag3</option>
+                          <option value="asthma_lag4">천식_lag4</option>
+                          <option value="asthma_lag5">천식_lag5</option>
+                        </select>
+                      </div>
+                      <div id="heatmap-chart3" style="max-width: 600px; margin: auto;"></div>
                     </div>
+                  </div>
                 </div>
-            </div>
+          
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="flot-chart-wp">
+                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
+                        <select id="eyedisLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+                          <option value="eyedis_lag0">눈병_lag0</option>
+                          <option value="eyedis_lag1">눈병_lag1</option>
+                          <option value="eyedis_lag2">눈병_lag2</option>
+                          <option value="eyedis_lag3">눈병_lag3</option>
+                          <option value="eyedis_lag4">눈병_lag4</option>
+                          <option value="eyedis_lag5">눈병_lag5</option>
+                        </select>
+                      </div>
+                      <div id="heatmap-chart4" style="max-width: 600px; margin: auto;"></div>
+                    </div>
+                  </div>
+          
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="flot-chart-wp">
+                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
+                        <select id="dermatiLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+                          <option value="dermati_lag0">피부염_lag0</option>
+                          <option value="dermati_lag1">피부염_lag1</option>
+                          <option value="dermati_lag2">피부염_lag2</option>
+                          <option value="dermati_lag3">피부염_lag3</option>
+                          <option value="dermati_lag4">피부염_lag4</option>
+                          <option value="dermati_lag5">피부염_lag5</option>
+                        </select>
+                      </div>
+                      <div id="heatmap-chart5" style="max-width: 600px; margin: auto;"></div>
+                    </div>
+                  </div>
+                </div>
+          
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp mg-t-30">
-                        <div id="bar-chart" class="flot-chart flot-chr-pro"></div>
+              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="flot-chart-wp">
+                  <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
+                      <select id="important_fact1" class="form-control" style="max-width: 300px; margin: auto;">
+                        <option value="sth important1">유의미한 데이터1-박스플롯</option>
+                        <option value="sth important2">유의미한 데이터2-박스플롯</option>
+                      </select>
                     </div>
+                  <div id="boxplot-chart" style="max-width: 600px; margin: auto;"></div>
                 </div>
+              </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp mg-t-30">
-                        <div id="dynamic-chart" class="flot-chart flot-chr-pro"></div>
+                  <div class="flot-chart-wp">
+                    <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
+                      <select id="important_fact2" class="form-control" style="max-width: 300px; margin: auto;">
+                        <option value="sth important3">유의미한 데이터3-박스플롯</option>
+                        <option value="sth important4">유의미한 데이터4-박스플롯</option>
+                      </select>
                     </div>
+                    <div id="boxplot-chart1" style="max-width: 600px; margin: auto;"></div>
+                  </div>
                 </div>
             </div>
-        </div>
+          </div>
     </div>
     <!-- Bar Chart area End-->
+
+
+
     <!-- Start Footer area-->
     <div class="footer-copyright-area">
         <div class="container">
@@ -202,6 +291,457 @@
 	<!-- tawk chat JS
 		============================================ -->
     <script src="/static/js/tawk-chat.js"></script>
+
+
+  <!-- apexcharts CDN 추가 -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <!-- Plotly 라이브러리 불러오기 -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 </body>
+
+
+{% block js_block %}
+
+<!-- [1] heatmap-chart: 고정 히트맵 (기본 상관관계) -->
+<script>
+  const xLabels = {{ x_labels | tojson | safe }};
+  const yLabels = {{ y_labels | tojson | safe }};
+  const zValues = {{ z_values | tojson | safe }};
+
+  const annotations = [];
+  for (let i = 0; i < yLabels.length; i++) {
+    for (let j = 0; j < xLabels.length; j++) {
+      annotations.push({
+        x: xLabels[j],
+        y: yLabels[i],
+        text: String(zValues[i][j]),
+        font: { size: 12, color: 'black' },
+        showarrow: false
+      });
+    }
+  }
+
+  const layout = {
+    title: {
+      text: '감기/천식/일교차 상관관계 히트맵(당일진료기준)',
+      font: { size: 20, family: 'Roboto, sans-serif', color: '#333' }
+    },
+    margin: { l: 100, r: 50, b: 50, t: 80 },
+    xaxis: { side: 'bottom' },
+    yaxis: {},
+    annotations: annotations
+  };
+
+  const data = [{
+    z: zValues,
+    x: xLabels,
+    y: yLabels,
+    type: 'heatmap',
+    colorscale: [
+      [0.00, '#f0fdfb'],
+      [0.25, '#a9eee2'],
+      [0.50, '#63dfc9'],
+      [0.75, '#1dd0b0'],
+      [1.00, '#04c394']
+    ],
+    showscale: true
+  }];
+
+  Plotly.newPlot('heatmap-chart', data, layout);
+</script>
+
+<!-- [2] heatmap-chart1: 드롭다운 감기/천식 선택 -->
+<script>
+  const heatmapData = {
+    cold: {{ cold_corr | tojson | safe }},
+    asthma: {{ asthma_corr | tojson | safe }}
+  };
+  const labels = {{ labels | tojson | safe }};
+
+  function updateHeatmap1(disease) {
+    const z = heatmapData[disease];
+    const annotations = [];
+
+    for (let i = 0; i < labels.length; i++) {
+      for (let j = 0; j < labels.length; j++) {
+        annotations.push({
+          x: labels[j],
+          y: labels[i],
+          text: !isNaN(parseFloat(z[i][j])) ? parseFloat(z[i][j]).toFixed(2) : '',
+          font: { size: 12, color: 'black' },
+          showarrow: false
+        });
+      }
+    }
+
+    const layout = {
+      title: {
+        text: (disease === 'cold' ? '감기' : '천식') + ' 일교차 상관관계 히트맵',
+        font: { size: 20, color: '#333' }
+      },
+      margin: { l: 100, r: 50, b: 50, t: 80 },
+      xaxis: { side: 'bottom' },
+      yaxis: {},
+      annotations: annotations
+    };
+
+    Plotly.newPlot('heatmap-chart1', [{
+      z: z,
+      x: labels,
+      y: labels,
+      type: 'heatmap',
+      colorscale: [
+        [0.00, '#f0fdfb'],
+        [0.25, '#a9eee2'],
+        [0.50, '#63dfc9'],
+        [0.75, '#1dd0b0'],
+        [1.00, '#04c394']
+      ],
+      showscale: true
+    }], layout);
+  }
+
+  updateHeatmap1('cold');
+  document.getElementById("diseaseSelector1").addEventListener("change", function () {
+    updateHeatmap1(this.value);
+  });
+</script>
+
+<!-- [3] heatmap-chart2: 감기+lag 선택 드롭다운 -->
+<script>
+  const coldLagData = {
+    cold_lag0: {{ cold_lag0 | tojson | safe }},
+    cold_lag1: {{ cold_lag1 | tojson | safe }},
+    cold_lag2: {{ cold_lag2 | tojson | safe }},
+    cold_lag3: {{ cold_lag3 | tojson | safe }},
+    cold_lag4: {{ cold_lag4 | tojson | safe }},
+    cold_lag5: {{ cold_lag5 | tojson | safe }}
+  };
+  const cold_axis_labels = {{ cold_axis_labels | tojson | safe }};
+
+  function updateHeatmap2(lag) {
+    const z = coldLagData[lag];
+    const annotations = [];
+    for (let i = 0; i < cold_axis_labels.length; i++) {
+      for (let j = 0; j < cold_axis_labels.length; j++) {
+        annotations.push({
+          x: cold_axis_labels[j],
+          y: cold_axis_labels[i],
+          text: typeof z[i][j] === 'number' ? z[i][j].toFixed(2) : '',
+          font: { size: 10, color: 'black' },
+          showarrow: false
+        });
+      }
+    }
+
+    const layout = {
+      title: {
+        text: lag + ' 대기오염 상관 히트맵',
+        font: { size: 20, color: '#333' }
+      },
+      margin: { l: 150, r: 50, b: 120, t: 80 },
+      xaxis: {
+        side: 'bottom',
+        tickangle: -45,
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      yaxis: {
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      annotations: annotations
+    };
+
+    Plotly.newPlot('heatmap-chart2', [{
+      z: z,
+      x: cold_axis_labels,
+      y: cold_axis_labels,
+      type: 'heatmap',
+      colorscale: [
+        [0.00, '#f0fdfb'],
+        [0.25, '#a9eee2'],
+        [0.50, '#63dfc9'],
+        [0.75, '#1dd0b0'],
+        [1.00, '#04c394']
+      ],
+      showscale: true,
+      zauto: true,
+      zmin: -1,
+      zmax: 1
+    }], layout);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    updateHeatmap2('cold_lag0');
+    document.getElementById("coldLagSelector").addEventListener("change", function () {
+      updateHeatmap2(this.value);
+    });
+  });
+</script>
+
+<!-- [4] heatmap-chart3: 천식+lag 선택 드롭다운 -->
+<script>
+  const asthmaLagData = {
+    asthma_lag0: {{ asthma_lag0 | tojson | safe }},
+    asthma_lag1: {{ asthma_lag1 | tojson | safe }},
+    asthma_lag2: {{ asthma_lag2 | tojson | safe }},
+    asthma_lag3: {{ asthma_lag3 | tojson | safe }},
+    asthma_lag4: {{ asthma_lag4 | tojson | safe }},
+    asthma_lag5: {{ asthma_lag5 | tojson | safe }},
+    asthma_lag6: {{ asthma_lag6 | tojson | safe }}
+  };
+  const asthma_axis_labels = {{ asthma_axis_labels | tojson | safe }};
+
+  function updateHeatmap3(lag) {
+    const z = asthmaLagData[lag];
+    const annotations = [];
+    for (let i = 0; i < asthma_axis_labels.length; i++) {
+      for (let j = 0; j < asthma_axis_labels.length; j++) {
+        annotations.push({
+          x: asthma_axis_labels[j],
+          y: asthma_axis_labels[i],
+          text: typeof z[i][j] === 'number' ? z[i][j].toFixed(2) : '',
+          font: { size: 10, color: 'black' },
+          showarrow: false
+        });
+      }
+    }
+
+    const layout = {
+      title: {
+        text: lag + ' 대기오염 상관 히트맵',
+        font: { size: 20, color: '#333' }
+      },
+      margin: { l: 150, r: 50, b: 120, t: 80 },
+      xaxis: {
+        side: 'bottom',
+        tickangle: -45,
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      yaxis: {
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      annotations: annotations
+    };
+
+    Plotly.newPlot('heatmap-chart3', [{
+      z: z,
+      x: asthma_axis_labels,
+      y: asthma_axis_labels,
+      type: 'heatmap',
+      colorscale: [
+        [0.00, '#f0fdfb'],
+        [0.25, '#a9eee2'],
+        [0.50, '#63dfc9'],
+        [0.75, '#1dd0b0'],
+        [1.00, '#04c394']
+      ],
+      showscale: true,
+      zauto: true,
+      zmin: -1,
+      zmax: 1
+    }], layout);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    updateHeatmap3('asthma_lag0');
+    document.getElementById("asthmaLagSelector").addEventListener("change", function () {
+      updateHeatmap3(this.value);
+    });
+  });
+</script>
+
+<!--  [5] heatmap-chart4: 눈병+lag 선택 드롭다운 (예정 - 병명/lag 처리용) -->
+<script>
+  const eyedisLagData = {
+    eyedis_lag0: {{ eyedis_lag0 | tojson | safe }},
+    eyedis_lag1: {{ eyedis_lag1 | tojson | safe }},
+    eyedis_lag2: {{ eyedis_lag2 | tojson | safe }},
+    eyedis_lag3: {{ eyedis_lag3 | tojson | safe }},
+    eyedis_lag4: {{ eyedis_lag4 | tojson | safe }},
+    eyedis_lag5: {{ eyedis_lag5 | tojson | safe }},
+    eyedis_lag6: {{ eyedis_lag6 | tojson | safe }}
+  };
+  const eyedis_axis_labels = {{ eyedis_axis_labels | tojson | safe }};
+
+  function updateHeatmap4(lag) {
+    const z = eyedisLagData[lag];
+    const annotations = [];
+    for (let i = 0; i < eyedis_axis_labels.length; i++) {
+      for (let j = 0; j < eyedis_axis_labels.length; j++) {
+        annotations.push({
+          x: eyedis_axis_labels[j],
+          y: eyedis_axis_labels[i],
+          text: typeof z[i][j] === 'number' ? z[i][j].toFixed(2) : '',
+          font: { size: 10, color: 'black' },
+          showarrow: false
+        });
+      }
+    }
+
+    const layout = {
+      title: {
+        text: lag + ' 대기오염 상관 히트맵',
+        font: { size: 20, color: '#333' }
+      },
+      margin: { l: 150, r: 50, b: 120, t: 80 },
+      xaxis: {
+        side: 'bottom',
+        tickangle: -45,
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      yaxis: {
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      annotations: annotations
+    };
+
+    Plotly.newPlot('heatmap-chart4', [{
+      z: z,
+      x: eyedis_axis_labels,
+      y: eyedis_axis_labels,
+      type: 'heatmap',
+      colorscale: [
+        [0.00, '#f0fdfb'],
+        [0.25, '#a9eee2'],
+        [0.50, '#63dfc9'],
+        [0.75, '#1dd0b0'],
+        [1.00, '#04c394']
+      ],
+      showscale: true,
+      zauto: true,
+      zmin: -1,
+      zmax: 1
+    }], layout);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    updateHeatmap4('eyedis_lag0');
+    document.getElementById("eyedisLagSelector").addEventListener("change", function () {
+      updateHeatmap4(this.value);
+    });
+  });
+</script>
+
+<!--  [6] heatmap-chart5: 피부염+lag 선택 드롭다운 (예정 - 병명/lag 처리용) -->
+<script>
+  const dermatiLagData = {
+    dermati_lag0: {{ dermati_lag0 | tojson | safe }},
+    dermati_lag1: {{ dermati_lag1 | tojson | safe }},
+    dermati_lag2: {{ dermati_lag2 | tojson | safe }},
+    dermati_lag3: {{ dermati_lag3 | tojson | safe }},
+    dermati_lag4: {{ dermati_lag4 | tojson | safe }},
+    dermati_lag5: {{ dermati_lag5 | tojson | safe }},
+    dermati_lag6: {{ dermati_lag6 | tojson | safe }}
+  };
+  const dermati_axis_labels = {{ dermati_axis_labels | tojson | safe }};
+
+  function updateHeatmap5(lag) {
+    const z = dermatiLagData[lag];
+    const annotations = [];
+    for (let i = 0; i < dermati_axis_labels.length; i++) {
+      for (let j = 0; j < dermati_axis_labels.length; j++) {
+        annotations.push({
+          x: dermati_axis_labels[j],
+          y: dermati_axis_labels[i],
+          text: typeof z[i][j] === 'number' ? z[i][j].toFixed(2) : '',
+          font: { size: 10, color: 'black' },
+          showarrow: false
+        });
+      }
+    }
+
+    const layout = {
+      title: {
+        text: lag + ' 대기오염 상관 히트맵',
+        font: { size: 20, color: '#333' }
+      },
+      margin: { l: 150, r: 50, b: 120, t: 80 },
+      xaxis: {
+        side: 'bottom',
+        tickangle: -45,
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      yaxis: {
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      annotations: annotations
+    };
+
+    Plotly.newPlot('heatmap-chart5', [{
+      z: z,
+      x: dermati_axis_labels,
+      y: dermati_axis_labels,
+      type: 'heatmap',
+      colorscale: [
+        [0.00, '#f0fdfb'],
+        [0.25, '#a9eee2'],
+        [0.50, '#63dfc9'],
+        [0.75, '#1dd0b0'],
+        [1.00, '#04c394']
+      ],
+      showscale: true,
+      zauto: true,
+      zmin: -1,
+      zmax: 1
+    }], layout);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    updateHeatmap5('dermati_lag0');
+    document.getElementById("dermatiLagSelector").addEventListener("change", function () {
+      updateHeatmap5(this.value);
+    });
+  });
+</script>
+
+<!--  [7] heatmap-chart6: Boxplot 드롭다운 전용 차트 (ApexCharts) -->
+<script>
+  const boxplotData = {
+    cold: [
+      { x: 'Mar', y: [30, 40, 45, 50, 60] },
+      { x: 'Apr', y: [35, 42, 48, 55, 65] }
+    ],
+    asthma: [
+      { x: 'Mar', y: [20, 30, 35, 40, 50] },
+      { x: 'Apr', y: [25, 33, 38, 45, 52] }
+    ]
+  };
+
+  function updateBoxPlot(disease) {
+    const options = {
+      series: [{ type: 'boxPlot', data: boxplotData[disease] }],
+      chart: { type: 'boxPlot', height: 350 },
+      title: { text: disease + ' 분포 BoxPlot' },
+      plotOptions: {
+        boxPlot: {
+          colors: {
+            upper: '#5C4742',
+            lower: '#A5978B'
+          }
+        }
+      }
+    };
+
+    const chart = new ApexCharts(document.querySelector("#boxplot-chart1"), options);
+    chart.render();
+  }
+
+  // 초기 렌더링
+  updateBoxPlot('cold');
+</script>
+
+{% endblock %}
+
+
+
 
 </html>

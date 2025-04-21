@@ -87,23 +87,79 @@ def kbTables_with_page():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+####################################### Yeongseo's  Start ########################################
 
 @tables_bp.route("/ysTables", methods=['GET'])
 def ysTables():
     return render_template('tables/ysTables.html')
+
+
+@tables_bp.route("/ysTables-init", methods=['GET'])
+def ysTables_init():
+
+    data_util.create_ColdandTem_table()
+
+    bp_path = tables_bp.root_path # 현재 blueprint의 경로 ( 여기서는 views )
+    root_path = Path(bp_path).parent #  부모 경로 (여기서는 demoweb )
+
+    file_path_ColdandTempDif = os.path.join(root_path, 'data_files', '202403_08_감기와일교차.csv')
+    file_path_ColdandAirPo = os.path.join(root_path, 'data_files', '202305_09_감기와대기오염.csv')
+    file_path_AsthmaandAirPo = os.path.join(root_path, 'data_files', '202305_09_천식과대기오염.csv')
+    file_path_EyeandAirPo = os.path.join(root_path, 'data_files', '202305_09_눈병과대기오염.csv')
+    file_path_DermaandAirPo = os.path.join(root_path, 'data_files', '202305_09_피부염과대기오염.csv')
+
+
+    df_ColdandTempDif = pd.read_csv(file_path_ColdandTempDif)
+    df_ColdandAirPo = pd.read_csv(file_path_ColdandAirPo)
+    df_AsthmaandAirPo = pd.read_csv(file_path_AsthmaandAirPo)
+    df_EyeandAirPo = pd.read_csv(file_path_EyeandAirPo)
+    df_DermaandAirPo = pd.read_csv(file_path_DermaandAirPo)
+
+    df_list = [
+                {'df_ColdandTempDif' : df_ColdandTempDif},
+                {'df_ColdandAirPo' : df_ColdandAirPo},
+                {'df_AsthmaandAirPo' : df_AsthmaandAirPo},
+                {'df_EyeandAirPo' : df_EyeandAirPo},
+                {'df_DermaandAirPo' : df_DermaandAirPo}
+                ]
+    
+    for data in df_list:
+        data_util.insert_ColdandTem_data(data)
+        
+    # data = df_diseaseByPopulation.values.tolist() # pymysql ... executemany가 list, tuple 만 처리
+
+    return redirect(url_for('main.index'))
+
+
+@tables_bp.route('/ysTables-with-page', methods=['GET'])
+def ysTables_with_page():
+
+    tableNm = request.args.get('tableNm')
+    rows = data_util.select_by_page(tableNm)
+    columns = [col[0] for col in data_util.select_column(tableNm)]
+    df = pd.DataFrame(rows,columns=columns)
+
+    # 템플릿으로 이동 ( 위에서 읽은 데이터 전달 )
+    return render_template('tables/ysTables.html',df=df,tableNm=tableNm)
+
+
+
+####################################### Yeongseo's  End ##########################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @tables_bp.route("/yhTables", methods=['GET'])
 def yhTables():
