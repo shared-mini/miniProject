@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="ko">
 
 <head>
     <meta charset="utf-8">
@@ -55,6 +55,8 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
@@ -75,8 +77,8 @@
 										<i class="notika-icon notika-bar-chart"></i>
 									</div>
 									<div class="breadcomb-ctn">
-										<h2>Flot Charts</h2>
-										<p>Welcome to Notika <span class="bread-ntd">Admin Template</span></p>
+										<h2>분석 결과 시각화</h2>
+										
 									</div>
 								</div>
 							</div>
@@ -97,26 +99,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp">
-                        <div id="curved-line-chart" class="flot-chart flot-ch-pg"></div>
-                    </div>
+                  <h2>연령별 평균 사망률</h2>
+                  <div id="chart"></div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp sm-res-mg-t-30">
-                        <div id="line-chart" class="flot-chart flot-ch-pg"></div>
-                    </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">  
+                  <h2>연령별 평균 확진률</h2>
+                    <div id="chart3"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp mg-t-30">
-                        <div id="bar-chart" class="flot-chart flot-chr-pro"></div>
-                    </div>
+                  <h2>각 변수 상관계수 히트맵</h2>
+                    <div id="chart2"></div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp mg-t-30">
-                        <div id="dynamic-chart" class="flot-chart flot-chr-pro"></div>
-                    </div>
+                 
                 </div>
             </div>
         </div>
@@ -202,6 +199,199 @@
 	<!-- tawk chat JS
 		============================================ -->
     <script src="/static/js/tawk-chat.js"></script>
+    
+
+    
+    
+    {% block js_block %}
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        fetch("/charts/api/correlation-data-2")  // Flask API 호출
+          .then(response => response.json())
+          .then(data => {
+            var options = {
+              series: data,
+              chart: {
+                height: 450,
+                type: 'heatmap',
+              },
+              dataLabels: {
+                enabled: true
+              },
+              plotOptions: {
+                heatmap: {
+                  shadeIntensity: 0.5,
+                  colorScale: {
+                    ranges: [
+                      {
+                        from: -1,
+                        to: -0.5,
+                        color: "#D4F4DD", // 연한 민트
+                        name: "강한 음의 상관"
+                      },
+                      {
+                        from: -0.5,
+                        to: 0,
+                        color: "#A2DED0", // 중간 민트
+                        name: "약한 음의 상관"
+                      },
+                      {
+                        from: 0,
+                        to: 0.5,
+                        color: "#00C292", // 💚 네가 선택한 색
+                        name: "약한 양의 상관"
+                      },
+                      {
+                        from: 0.5,
+                        to: 1,
+                        color: "#009B7D", // 진한 청록
+                        name: "강한 양의 상관"
+                      }
+                    ]
+                  }
+                }
+              },
+              xaxis: {
+                type: 'category'
+              },
+              
+            };
+            var chart = new ApexCharts(document.querySelector("#chart2"), options);
+            chart.render();
+          });
+      });
+
+    </script>
+    
+    {% endblock %}
+    
+    <script>
+      fetch("/charts/api/age-mortality")
+        .then(response => response.json())
+        .then(result => {
+          var options = {
+            series: [{
+              name: "평균 사망률 (%)",
+              data: result.data
+            }],
+            chart: {
+              height: 450,
+              type: 'line',
+              zoom: { enabled: false }
+            },
+            dataLabels: {
+              enabled: true,
+              formatter: function (val) {
+                return val.toFixed(2) + "%";  // 도트 위에 사망률 표시
+              },
+              offsetY: -10,
+              style: {
+                fontSize: '12px',
+                colors: ['#000']
+              }
+            },
+            stroke: {
+              curve: 'smooth',
+              width: 3
+            },
+            markers: {
+              size: 5,
+              colors: ['#009B7D'],  // 도트 색상
+              strokeColors: '#fff',
+              strokeWidth: 2
+            },
+            grid: {
+              row: {
+                colors: ['#f3f3f3', 'transparent'],
+                opacity: 0.5
+              },
+            },
+            xaxis: {
+              categories: result.categories,
+              title: {
+                text: '연령'
+              }
+            },
+            yaxis: {
+              title: {
+                text: '사망률 (%)'
+              }
+            },
+            tooltip: {
+              y: {
+                formatter: function (val) {
+                  return val.toFixed(2) + "%";
+                }
+              }
+            }
+          };
+    
+          var chart = new ApexCharts(document.querySelector("#chart"), options);
+          chart.render();
+        });
+    </script>
+
+    <script>
+      fetch("/charts/api/age-infection-rate")
+        .then(response => response.json())
+        .then(result => {
+          var options = {
+            series: [{
+              name: "평균 확진률 (%)",
+              data: result.data
+            }],
+            chart: {
+              height: 450,
+              type: 'bar'
+            },
+            plotOptions: {
+              bar: {
+                borderRadius: 4,
+                columnWidth: '45%',
+                distributed: true
+              }
+            },
+            dataLabels: {
+              enabled: true,
+              formatter: function (val) {
+                return val.toFixed(2) + "%"
+              },
+              style:{colors : ['#000000']}
+            },
+            xaxis: {
+              categories: result.categories,
+              title: {
+                text: '연령'
+              }
+            },
+            yaxis: {
+              title: {
+                text: '확진률 (%)'
+              }
+            },
+            tooltip: {
+              y: {
+                formatter: function (val) {
+                  return val.toFixed(2) + "%"
+                }
+              }
+            },
+            colors: ['#009B7D'] // 여기에 원하는 색상을 지정합니다. 예: '#FF5733' (주황색)
+          };
+
+          var chart = new ApexCharts(document.querySelector("#chart3"), options);
+          chart.render();
+        });
+    </script>
+    
+    
+
+
+    
+    
+
+
 </body>
 
 </html>

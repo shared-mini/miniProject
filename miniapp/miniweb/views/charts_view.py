@@ -152,3 +152,77 @@ def yh():
 
 
 ####################################### chart end #######################################
+
+
+
+####################### yunhwan chart ################################################################
+@charts_bp.route("/yhCharts", methods=['GET'])
+def yh():
+    return render_template('charts/yhCharts.html')  # 여기서는 HTML만 반환
+
+
+# 상관계수 히트맵
+@charts_bp.route('/api/correlation-data-2')
+def correlation_data_2():
+    base_dir = os.path.dirname(os.path.abspath(__file__))  # zminiweb/views
+    csv_path = os.path.join(base_dir, '..', 'data_files', '코로나성별연령현황.csv')  # ✅ 수정된 경로
+
+    csv_path = os.path.abspath(csv_path)  # 절대 경로로 바꿔줌
+    print("✅ CSV 경로:", csv_path)  # 경로 디버깅 확인
+
+    df = pd.read_csv(csv_path, encoding='utf-8')  # 또는 encoding='cp949' 도 시도해볼 수 있음
+    df_numeric = df.select_dtypes(include='number')
+    corr = df_numeric.corr().round(2)
+
+    series = []
+    for row in corr.index:
+        series.append({
+            "name": row,
+            "data": [{"x": col, "y": corr.loc[row, col]} for col in corr.columns]
+        })
+
+    return jsonify(series)
+
+ 
+# 연령별 평균 사망률
+@charts_bp.route('/api/age-mortality')
+def age_mortality_api():
+    
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, '..', 'data_files', '코로나성별연령현황.csv')
+
+    df = pd.read_csv(csv_path, encoding='utf-8')
+    df_age_mortality = df[['연령', '사망률']].groupby('연령').mean().reset_index()
+    df_age_mortality = df_age_mortality.sort_values(by='연령')
+
+    categories = df_age_mortality['연령'].tolist()
+    data = df_age_mortality['사망률'].round(2).tolist()  
+
+    return jsonify({
+        "categories": categories,
+        "data": data
+    })
+
+# 연령별 평균 확진률 
+@charts_bp.route('/api/age-infection-rate')
+def age_infection_rate_api():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, '..', 'data_files', '코로나성별연령현황.csv')
+
+    df = pd.read_csv(csv_path, encoding='utf-8')
+    df.columns = df.columns.str.strip()  # 혹시 모를 공백 제거
+
+    # 연령 정보가 존재하는 행만 필터링
+    df_age = df[df['연령'].notna()].copy()
+
+    # 연령별 확진률 평균 계산
+    age_confirm_rate = df_age.groupby('연령')['확진률'].mean().reset_index()
+    age_confirm_rate = age_confirm_rate.sort_values(by='연령')
+
+    return jsonify({
+        'categories': age_confirm_rate['연령'].tolist(),
+        'data': age_confirm_rate['확진률'].round(2).tolist()
+    })
+
+
+#######################yunhwan end #####################################################################

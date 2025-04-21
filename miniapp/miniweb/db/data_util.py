@@ -447,3 +447,122 @@ def select_ColdandTem_count():
 
 
 ##################################### Yeongseo's area End #######################################
+
+###################################### yunhwan area start ######################################
+
+import pymysql
+
+def create_covid_age_gender_table():
+    try:
+        conn = pymysql.connect(host="localhost", 
+                               db='miniwebs', 
+                               user='humanda5', 
+                               password='humanda5')
+        
+        cursor = conn.cursor()
+
+        sql = """drop table if exists covid_age_gender"""
+        cursor.execute(sql)
+
+        # 코로나 성별, 연령 현황
+        sql = """create table if not exists covid_age_gender
+                (
+                    치명률 float 
+                    ,사망자수 int 
+                    ,사망률 float 
+                    ,확진률 float 
+                    ,등록일자 varchar(50)
+                    ,확진자수 int 
+                    ,연령 varchar(50) 
+                    ,성별 varchar(50) 
+                );"""
+        cursor.execute(sql)
+
+    
+    except Exception as e:
+        print('테이블 조회 실패', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+def insert_covid_age_gender_data(data):
+    try:
+        conn = pymysql.connect(host="localhost", 
+                               db='miniwebs', 
+                               user='humanda5', 
+                               password='humanda5')
+        
+        cursor = conn.cursor()
+
+
+        # df= df.fillna(None)
+        # values = df.values.tolist()
+
+        # if 'covid_age_gender' in data: 
+        sql = "insert into covid_age_gender values (%s, %s, %s, %s, %s, %s, %s, %s)"
+        cursor.executemany(sql, data)
+
+
+        
+        conn.commit()
+    except Exception as e:
+        print('데이터 저장 실패2', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+
+# 테이블 데이터 조회
+def select_covid_age_gender_by_page(tableNm):
+    rows = None
+    try:
+        conn = pymysql.connect(host="localhost", 
+                               db='miniwebs', 
+                               user='humanda5', 
+                               password='humanda5')
+        
+        cursor = conn.cursor()
+
+        sql = f"select * from {tableNm}"
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+    except Exception as e:
+        print('데이터 저장 실패3', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+    return rows
+
+
+def select_column3(tableNm):
+    rows = None
+    try:
+        conn = pymysql.connect(
+            host="localhost",
+            db="miniwebs",
+            user="humanda5",
+            password="humanda5"
+        )
+        cursor = conn.cursor()
+        sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = %s"
+        cursor.execute(sql, (tableNm,))
+        rows = cursor.fetchall()
+    except Exception as e:
+        print("컬럼 조회 실패", e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+    return rows
+
+
+
+###################################### yunhwan area end ######################################

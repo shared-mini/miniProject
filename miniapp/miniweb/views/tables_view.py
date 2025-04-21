@@ -185,10 +185,52 @@ def ysTables_with_page():
 
 
 
+########################################## yun start #######################################
 @tables_bp.route("/yhTables", methods=['GET'])
 def yhTables():
-    return render_template('tables/yhTables.html')
+    tableNm = "covid_age_gender"  # ← DB에 이미 들어간 테이블명
 
+    rows = data_util.select_by_page(tableNm)  # DB에서 데이터 가져오기
+    columns = [col[0] for col in data_util.select3_column(tableNm)]  # 컬럼명 가져오기
+    df = pd.DataFrame(rows, columns=columns)
+    return render_template('tables/yhTables.html', df=df,tableNm=tableNm )
+
+
+
+@tables_bp.route("/yhTables-init", methods=['GET'])
+def yhTables_init():
+
+
+    bp_path = tables_bp.root_path # 현재 blueprint의 경로 ( 여기서는 views )
+    root_path = Path(bp_path).parent #  부모 경로 (여기서는 demoweb )
+    file_path_covid_age_gender = os.path.join(root_path, 'data_files', '코로나성별연령현황.csv')
+    df_covid_age_gender = pd.read_csv(file_path_covid_age_gender)
+
+    df_covid_age_gender = df_covid_age_gender.fillna('')
+
+
+    data_util.create_covid_age_gender_table()
+    data = df_covid_age_gender.values.tolist()
+    data_util.insert_covid_age_gender_data(data)
+        
+    # data = df_diseaseByPopulation.values.tolist() # pymysql ... executemany가 list, tuple 만 처리
+
+    return redirect(url_for('main.index'))
+
+@tables_bp.route('/yhTables-with-page', methods=['GET'])
+
+def yhTables_with_page():
+
+    tableNm = request.args.get('tableNm')
+    rows = data_util.select_covid_age_gender_by_page(tableNm)
+    columns = [col[0] for col in data_util.select_column(tableNm)]
+    df = pd.DataFrame(rows, columns=columns)
+    # 템플릿으로 이동 ( 위에서 읽은 데이터 전달 )
+    return render_template('tables/yhTables.html',df=df,tableNm=tableNm)
+
+
+
+############yun end############################################
 
 
 ####################################### table end #######################################
