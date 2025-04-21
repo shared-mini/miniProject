@@ -179,15 +179,6 @@ def ys():
 ###################################### Yeongseo's AREA End #######################################
 
 
-@charts_bp.route("/yhCharts", methods=['GET'])
-def yh():
-    return render_template('charts/yhCharts.html')
-
-
-####################################### chart end #######################################
-
-
-
 ####################### yunhwan chart ################################################################
 @charts_bp.route("/yhCharts", methods=['GET'])
 def yh():
