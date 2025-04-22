@@ -710,3 +710,39 @@ def select_column3(tableNm):
 
 
 ###################################### yunhwan area end ######################################
+
+###################################### 회원 테이블 생성 ######################################
+def create_member_table():
+    try:
+        conn = pymysql.connect(host="localhost", 
+                               database='miniwebs', 
+                               user='humanda5', 
+                               password='humanda5')
+        
+        cursor = conn.cursor()
+
+        sql = """drop table if exists member"""
+        cursor.execute(sql)
+        
+
+        # 멤버 테이블 생성
+        sql = """create table member
+                (
+                    email varchar(100) primary key,
+                    passwd varchar(200) not null,
+                    username varchar(20),
+                    usertype varchar(20) default('user'),
+                    deleted boolean default(false),
+                    regdate date default(now())
+                );"""
+        cursor.execute(sql)
+        
+
+    except Exception as e:
+        print('테이블 생성 실패', e)
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+###################################### 회원 테이블 생성 ######################################

@@ -12,6 +12,9 @@ import yfinance as yf
 
 from ..db import data_util
 
+from ..db import member_util
+from werkzeug.security import generate_password_hash, check_password_hash
+
 tables_bp = Blueprint('tables', __name__, url_prefix="/tables")
 
 
@@ -212,4 +215,23 @@ def yhTables_with_page():
 ############yun end############################################
 
 
-####################################### table end #######################################
+####################################### table end #######################################@tables_bp.route("/kbTables-init", methods=['GET'])
+@tables_bp.route('/dataInit', methods=['GET'])
+def dataInit():
+    # 경보데이터
+    kbTables_init()
+    # 영서데이터
+    ysTables_init()
+    # 윤환데이터
+    yhTables_init()
+    # member table 생성
+    data_util.create_member_table()
+
+    userName = "admin"
+    eMail = "admin@admin.com"
+    password = "1234"
+    passwd_hash = generate_password_hash(password)
+    usertype = "admin"
+    member_util.insert_member(eMail, passwd_hash, userName,usertype)
+    
+    return redirect(url_for('main.index'))

@@ -51,6 +51,8 @@
     <!-- modernizr JS
 		============================================ -->
     <script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
+    <link rel="stylesheet" href="/static/css/dialog/sweetalert2.min.css">
+    <link rel="stylesheet" href="/static/css/dialog/dialog.css">
 </head>
 
 <body>
@@ -58,6 +60,19 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <!-- Login Register area Start-->
+    <div class="header-top-area" >
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <div class="logo-area" >
+                      <a href="/">
+                          <img src="/static/img/logo/logo.png" style="width: 100px; height: 80px;" alt="" />
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
     <div class="login-content">
         <!-- Login -->
         <div class="nk-block toggled" id="l-login">
@@ -217,13 +232,14 @@
     <!-- main JS
 		============================================ -->
     <script src="/static/js/main.js"></script>
-
+    <script src="/static/js/dialog/sweetalert2.min.js"></script>
+    <script src="/static/js/dialog/dialog-active.js"></script>
 
     <script>
       const message = '{{ message }}'; // {{ message }} : render_template('path', message= ' ... ')에서 전달
       
       if (message) {
-          alert(message);
+        swal(message);
       }
 
     </script>

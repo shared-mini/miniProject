@@ -16,16 +16,15 @@ var populationStr = `<div class="form-check form-switch">
 					  <label class="form-check-label" for="chkBar">인구별 감기 발생률 BAR PLOT</label>
                       </div>
                       <div class="dropdown years">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="yrDropdown">
-                          연도
-                            <span class="caret">
-                            </span>
-                        </button>
-                        <ul id="dropDown" class="dropdown-menu">
-                            <li>
-                              	
-                            </li>
-                        </ul>
+                        <button class="btn triger-flipInY waves-effect" data-toggle="dropdown" aria-expanded="false" id="yrDropdown">
+							연도
+							<span class="caret">
+							</span>
+						</button>
+						<ul id="dropDown" class="dropdown-menu triger-flipInY-dp animated flipInY">
+							<li>
+							</li>
+						</ul>
                       </div>`;
 
 // 면적별 감기 발생률 str
@@ -39,17 +38,28 @@ var areaStr = `
 					<label class="form-check-label" for="chkBar">면적별 감기 발생률 SCATTER PLOT</label>
 				</div>
 				<div class="dropdown years">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="yrDropdown">
+					<button class="btn triger-flipInY waves-effect" data-toggle="dropdown" aria-expanded="false" id="yrDropdown">
 						연도
 						<span class="caret">
 						</span>
 					</button>
-					<ul id="dropDown" class="dropdown-menu">
+					<ul id="dropDown" class="dropdown-menu triger-flipInY-dp animated flipInY">
 						<li>
-							
 						</li>
 					</ul>
-				</div>`;
+				</div>
+					`;
+
+					// <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="yrDropdown">
+					// 	연도
+					// 	<span class="caret">
+					// 	</span>
+					// </button>
+					// <ul id="dropDown" class="dropdown-menu">
+					// 	<li>
+							
+					// 	</li>
+					// </ul>
 // 밀집도별 위험도 str
 var riskStr = ` 
 				<div class="form-check form-switch">
@@ -61,14 +71,13 @@ var riskStr = `
 					<label class="form-check-label" for="chkBar">밀집도별 위험도 SCATTER PLOT</label>
 				</div>
 				<div class="dropdown years">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="yrDropdown">
+					<button class="btn triger-flipInY waves-effect" data-toggle="dropdown" aria-expanded="false" id="yrDropdown">
 						연도
 						<span class="caret">
 						</span>
 					</button>
-					<ul id="dropDown" class="dropdown-menu">
+					<ul id="dropDown" class="dropdown-menu triger-flipInY-dp animated flipInY">
 						<li>
-							
 						</li>
 					</ul>
 				</div>`;

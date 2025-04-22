@@ -25,7 +25,8 @@ def login():
 
         # 2. 요청 처리
         if check_password_hash(row[1], password): # 로그인 성공
-            session['loginuser'] = eMail
+            session['loginuser'] = row[0]
+            session['usertype'] = row[3]
             return redirect(url_for('main.index')) 
         else:   # 로그인 실패
             return render_template("auth/login-register.html",
@@ -44,13 +45,14 @@ def register():
     eMail = request.form.get('eMail')
     password = request.form.get('password')
     passwd_hash = generate_password_hash(password)
+    usertype = "user"
     try:
         chk = int(member_util.chk_primary(eMail)[0])
         if chk > 0 :
             return render_template("auth/login-register.html",
                                    message="이미 등록된 이메일 입니다.") 
         else:
-            member_util.insert_member(eMail, passwd_hash, userName)
+            member_util.insert_member(eMail, passwd_hash, userName, usertype)
             return render_template("auth/login-register.html",
                                    message="가입 되었습니다.") 
     except Exception as e :

@@ -31,7 +31,7 @@ def chk_primary(userName):
 
 ## 회원가입
 
-def insert_member(eMail, passwd, userName):
+def insert_member(eMail, passwd, userName,usertype):
     try:
 
         # conn =  dbInfo.dbInfo
@@ -41,8 +41,8 @@ def insert_member(eMail, passwd, userName):
                                 password = "humanda5",
                                 database = "miniwebs")
         cursor = conn.cursor()
-        sql = "insert into member (email, passwd, username) values (%s, %s, %s)"
-        cursor.execute(sql,(eMail, passwd, userName))
+        sql = "insert into member (email, passwd, username, usertype) values (%s, %s, %s, %s)"
+        cursor.execute(sql,(eMail, passwd, userName, usertype))
         conn.commit()
     except Exception as e :
         print(f"오류발생 = {e}")

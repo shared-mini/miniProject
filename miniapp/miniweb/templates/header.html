@@ -35,6 +35,13 @@
                                     <li><a href="data-table.html">Data Table</a></li>
                                 </ul>
                             </li>
+                                {% if session.get('usertype') == "admin" %}
+                                <li><a data-toggle="collapse" data-target="#democrou" href="#">Data</a>
+                                    <ul id="democrou" class="collapse dropdown-header-top">
+                                        <li><a href="animations.html">데이터 초기화</a></li>
+                                    </ul>
+                                </li>
+                                {% endif %}
                             {% endif %}
                             <li>
                                 {% if session.get('loginuser') %}
@@ -62,6 +69,10 @@
                     </li>
                     <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Tables</a>
                     </li>
+                        {% if session.get('usertype') == "admin" %}
+                        <li><a data-toggle="tab" href="#Interface"><i class="notika-icon notika-edit"></i> Data</a>
+                        </li>
+                        {% endif %}
                     <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> LogOut</a>
                     </li>
                     {% else %}
@@ -87,6 +98,12 @@
                             </li>
                             <li><a href="{{url_for('tables.yhTables_with_page', tableNm='covid_age_gender')}}">윤환테이블</a>
                             </li>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="Interface" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="{{url_for('tables.dataInit')}}">데이터 초기화</a>
                             </li>
                         </ul>
                     </div>
