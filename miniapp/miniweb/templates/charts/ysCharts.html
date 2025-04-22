@@ -56,6 +56,33 @@
 		============================================ -->
     <script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
 
+
+    <style>
+      .flot-chart-wp {
+        padding: 20px 10px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+    
+      .chart-block {
+        max-width: 600px;
+        margin: auto;
+      }
+    
+      .dropdown {
+        margin-bottom: 10px;
+      }
+    
+      .section-divider {
+        height: 15px;
+      }
+    
+      .flot-chart-area {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    </style>
+
 </head>
 
 <body>
@@ -90,125 +117,141 @@
 		</div>
 	</div>
 	<!-- Breadcomb area End-->
-    <!-- Bar Chart area End-->
-    <div class="flot-chart-area">
-        <div class="container">
-            <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="flot-chart-wp">
-                  <div id="heatmap-chart" style="max-width: 600px; margin: auto;"></div>
-                </div>
-              </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <div class="flot-chart-wp">
-                    <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
-                      <select id="diseaseSelector1" class="form-control" style="max-width: 300px; margin: auto;">
-                        <option value="cold">감기</option>
-                        <option value="asthma">천식</option>
-                      </select>
-                    </div>
-                    <div id="heatmap-chart1" style="max-width: 600px; margin: auto;"></div>
-                  </div>
-                </div>
-            </div>
-            <div class="flot-chart-area">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp">
-                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
-                        <select id="coldLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
-                          <option value="cold_lag0">감기_lag0</option>
-                          <option value="cold_lag1">감기_lag1</option>
-                          <option value="cold_lag2">감기_lag2</option>
-                          <option value="cold_lag3">감기_lag3</option>
-                          <option value="cold_lag4">감기_lag4</option>
-                          <option value="cold_lag5">감기_lag5</option>
-                        </select>
-                      </div>
-                      <div id="heatmap-chart2" style="max-width: 600px; margin: auto;"></div>
-                    </div>
-                  </div>
-          
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp">
-                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
-                        <select id="asthmaLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
-                          <option value="asthma_lag0">천식_lag0</option>
-                          <option value="asthma_lag1">천식_lag1</option>
-                          <option value="asthma_lag2">천식_lag2</option>
-                          <option value="asthma_lag3">천식_lag3</option>
-                          <option value="asthma_lag4">천식_lag4</option>
-                          <option value="asthma_lag5">천식_lag5</option>
-                        </select>
-                      </div>
-                      <div id="heatmap-chart3" style="max-width: 600px; margin: auto;"></div>
-                    </div>
-                  </div>
-                </div>
-          
-                <div class="row">
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp">
-                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
-                        <select id="eyedisLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
-                          <option value="eyedis_lag0">눈병_lag0</option>
-                          <option value="eyedis_lag1">눈병_lag1</option>
-                          <option value="eyedis_lag2">눈병_lag2</option>
-                          <option value="eyedis_lag3">눈병_lag3</option>
-                          <option value="eyedis_lag4">눈병_lag4</option>
-                          <option value="eyedis_lag5">눈병_lag5</option>
-                        </select>
-                      </div>
-                      <div id="heatmap-chart4" style="max-width: 600px; margin: auto;"></div>
-                    </div>
-                  </div>
-          
-                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <div class="flot-chart-wp">
-                      <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
-                        <select id="dermatiLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
-                          <option value="dermati_lag0">피부염_lag0</option>
-                          <option value="dermati_lag1">피부염_lag1</option>
-                          <option value="dermati_lag2">피부염_lag2</option>
-                          <option value="dermati_lag3">피부염_lag3</option>
-                          <option value="dermati_lag4">피부염_lag4</option>
-                          <option value="dermati_lag5">피부염_lag5</option>
-                        </select>
-                      </div>
-                      <div id="heatmap-chart5" style="max-width: 600px; margin: auto;"></div>
-                    </div>
-                  </div>
-                </div>
-          
-            <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="flot-chart-wp">
-                  <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
-                      <select id="important_fact1" class="form-control" style="max-width: 300px; margin: auto;">
-                        <option value="sth important1">유의미한 데이터1-박스플롯</option>
-                        <option value="sth important2">유의미한 데이터2-박스플롯</option>
-                      </select>
-                    </div>
-                  <div id="boxplot-chart" style="max-width: 600px; margin: auto;"></div>
-                </div>
-              </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <div class="flot-chart-wp">
-                    <div class="dropdown" style="text-align:center; margin-bottom: 10px;">
-                      <select id="important_fact2" class="form-control" style="max-width: 300px; margin: auto;">
-                        <option value="sth important3">유의미한 데이터3-박스플롯</option>
-                        <option value="sth important4">유의미한 데이터4-박스플롯</option>
-                      </select>
-                    </div>
-                    <div id="boxplot-chart1" style="max-width: 600px; margin: auto;"></div>
-                  </div>
-                </div>
-            </div>
-          </div>
-    </div>
-    <!-- Bar Chart area End-->
 
+
+  <!-- Chart area Start-->
+<div class="flot-chart-area">
+  <div class="container">
+
+    <!-- 1~2 줄 -->
+    <div class="row">
+      <!-- heatmap-chart -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+          <div id="heatmap-chart" class="chart-block"></div>
+        </div>
+      </div>
+      <!-- heatmap-chart1 -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+          <div class="dropdown">
+            <select id="diseaseSelector1" class="form-control" style="max-width: 300px; margin: auto;">
+              <option value="cold">감기</option>
+              <option value="asthma">천식</option>
+            </select>
+          </div>
+          <div id="heatmap-chart1" class="chart-block"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- 3~4 줄 -->
+    <div class="row">
+      <!-- heatmap-chart2 -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+          <div class="dropdown">
+            <select id="coldLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+              <option value="cold_lag0">감기_lag0</option>
+              <option value="cold_lag1">감기_lag1</option>
+              <option value="cold_lag2">감기_lag2</option>
+              <option value="cold_lag3">감기_lag3</option>
+              <option value="cold_lag4">감기_lag4</option>
+              <option value="cold_lag5">감기_lag5</option>
+            </select>
+          </div>
+          <div id="heatmap-chart2" class="chart-block"></div>
+        </div>
+      </div>
+      <!-- heatmap-chart3 -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+          <div class="dropdown">
+            <select id="asthmaLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+              <option value="asthma_lag0">천식_lag0</option>
+              <option value="asthma_lag1">천식_lag1</option>
+              <option value="asthma_lag2">천식_lag2</option>
+              <option value="asthma_lag3">천식_lag3</option>
+              <option value="asthma_lag4">천식_lag4</option>
+              <option value="asthma_lag5">천식_lag5</option>
+            </select>
+          </div>
+          <div id="heatmap-chart3" class="chart-block"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- 5~6 줄 -->
+    <div class="row">
+      <!-- heatmap-chart4 -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+          <div class="dropdown">
+            <select id="eyedisLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+              <option value="eyedis_lag0">눈병_lag0</option>
+              <option value="eyedis_lag1">눈병_lag1</option>
+              <option value="eyedis_lag2">눈병_lag2</option>
+              <option value="eyedis_lag3">눈병_lag3</option>
+              <option value="eyedis_lag4">눈병_lag4</option>
+              <option value="eyedis_lag5">눈병_lag5</option>
+            </select>
+          </div>
+          <div id="heatmap-chart4" class="chart-block"></div>
+        </div>
+      </div>
+      <!-- heatmap-chart5 -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+          <div class="dropdown">
+            <select id="dermatiLagSelector" class="form-control" style="max-width: 300px; margin: auto;">
+              <option value="dermati_lag0">피부염_lag0</option>
+              <option value="dermati_lag1">피부염_lag1</option>
+              <option value="dermati_lag2">피부염_lag2</option>
+              <option value="dermati_lag3">피부염_lag3</option>
+              <option value="dermati_lag4">피부염_lag4</option>
+              <option value="dermati_lag5">피부염_lag5</option>
+            </select>
+          </div>
+          <div id="heatmap-chart5" class="chart-block"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- 7~8 줄 -->
+    <div class="row">
+      <!-- bar-corr-chart -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+          <!-- 기존 드롭다운 자리에 오염물질 단일선택 체크박스 삽입 -->
+          <div style="text-align: center; margin-bottom: 10px;">
+            {% for pollutant in pollutant_corr.keys() %}
+              <label style="margin-right: 10px;">
+                <input type="checkbox" name="pollutantToggle" value="{{ pollutant }}" {% if loop.first %}checked{% endif %}>
+                {{ pollutant }}
+              </label>
+            {% endfor %}
+          </div>
+          <div id="bar-corr-chart" class="chart-block"></div>
+        </div>
+      </div>
+      <!-- boxplot-chart1 (같은 row 안에 col-6으로 위치) -->
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="flot-chart-wp">
+            <h2 class="title" style="font-size: 18px;">감기 vs 이산화질소 농도 구간에 따른 발생건수 분포</h2>
+            <div id="boxplot-chart1" class="chart-block"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Chart area End-->
 
 
     <!-- Start Footer area-->
@@ -297,6 +340,8 @@
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <!-- Plotly 라이브러리 불러오기 -->
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- 교체: 최신 버전 명시 (예: v2.27.0 기준) -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
 </body>
 
@@ -357,10 +402,15 @@
     cold: {{ cold_corr | tojson | safe }},
     asthma: {{ asthma_corr | tojson | safe }}
   };
-  const labels = {{ labels | tojson | safe }};
+
+  const axisLabels = {
+    cold: {{ cold_axis_labels | tojson | safe }},
+    asthma: {{ asthma_axis_labels | tojson | safe }}
+  };
 
   function updateHeatmap1(disease) {
     const z = heatmapData[disease];
+    const labels = axisLabels[disease];  // ✅ 병렬적으로 라벨 변경
     const annotations = [];
 
     for (let i = 0; i < labels.length; i++) {
@@ -375,18 +425,7 @@
       }
     }
 
-    const layout = {
-      title: {
-        text: (disease === 'cold' ? '감기' : '천식') + ' 일교차 상관관계 히트맵',
-        font: { size: 20, color: '#333' }
-      },
-      margin: { l: 100, r: 50, b: 50, t: 80 },
-      xaxis: { side: 'bottom' },
-      yaxis: {},
-      annotations: annotations
-    };
-
-    Plotly.newPlot('heatmap-chart1', [{
+    const trace = {
       z: z,
       x: labels,
       y: labels,
@@ -399,14 +438,42 @@
         [1.00, '#04c394']
       ],
       showscale: true
-    }], layout);
+    };
+
+    const layout = {
+      title: {
+        text: (disease === 'cold' ? '감기' : '천식') + ' 일교차 상관관계 히트맵',
+        font: { size: 20, color: '#333' }
+      },
+      margin: { l: 150, r: 50, b: 120, t: 80 },  // 마진 조금 넉넉하게
+      xaxis: {
+        side: 'bottom',
+        tickangle: -45,
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      yaxis: {
+        tickfont: { size: 10 },
+        automargin: true
+      },
+      annotations: annotations
+    };
+
+
+    Plotly.react('heatmap-chart1', [trace], layout);
   }
 
+  // 초기 렌더링
   updateHeatmap1('cold');
+
+  // 드롭다운 이벤트 연결
   document.getElementById("diseaseSelector1").addEventListener("change", function () {
     updateHeatmap1(this.value);
   });
 </script>
+
+
+
 
 <!-- [3] heatmap-chart2: 감기+lag 선택 드롭다운 -->
 <script>
@@ -703,41 +770,90 @@
   });
 </script>
 
-<!--  [7] heatmap-chart6: Boxplot 드롭다운 전용 차트 (ApexCharts) -->
-<script>
-  const boxplotData = {
-    cold: [
-      { x: 'Mar', y: [30, 40, 45, 50, 60] },
-      { x: 'Apr', y: [35, 42, 48, 55, 65] }
-    ],
-    asthma: [
-      { x: 'Mar', y: [20, 30, 35, 40, 50] },
-      { x: 'Apr', y: [25, 33, 38, 45, 52] }
-    ]
-  };
 
-  function updateBoxPlot(disease) {
-    const options = {
-      series: [{ type: 'boxPlot', data: boxplotData[disease] }],
-      chart: { type: 'boxPlot', height: 350 },
-      title: { text: disease + ' 분포 BoxPlot' },
-      plotOptions: {
-        boxPlot: {
-          colors: {
-            upper: '#5C4742',
-            lower: '#A5978B'
-          }
-        }
-      }
+
+<!-- [7] pollutant-bar-chart: 오염물질 선택에 따른 바차트 전환 -->
+<script>
+  const pollutantCorrData = {{ pollutant_corr | tojson | safe }};
+
+  function drawPollutantBar(pollutant) {
+    const data = pollutantCorrData[pollutant];
+    const trace = {
+      x: Object.keys(data),
+      y: Object.values(data),
+      type: 'bar',
+      marker: { color: '#1dd0b0' },
+      text: Object.values(data).map(v => v.toFixed(3)),
+      textposition: 'auto'
     };
 
-    const chart = new ApexCharts(document.querySelector("#boxplot-chart1"), options);
-    chart.render();
+    const layout = {
+      title: pollutant + ' vs 질병별 상관계수 (lag1 기준)',
+      yaxis: { title: '상관계수 (r)', range: [-0.05, 0.5] },
+      xaxis: { title: '질병명' },
+      margin: { l: 80, r: 40, b: 70, t: 60 }
+    };
+
+    Plotly.react('bar-corr-chart', [trace], layout);
   }
 
-  // 초기 렌더링
-  updateBoxPlot('cold');
+  // checkbox를 radio처럼 동작하게 (단일 선택 유지)
+  const checkboxes = document.querySelectorAll('input[name="pollutantToggle"]');
+  drawPollutantBar(checkboxes[0].value);  // 초기 렌더링
+
+  checkboxes.forEach(box => {
+    box.addEventListener('change', function () {
+      checkboxes.forEach(b => { if (b !== this) b.checked = false; });
+      if (this.checked) {
+        drawPollutantBar(this.value);
+      } else {
+        this.checked = true;
+      }
+    });
+  });
 </script>
+
+<!-- [8] Boxplot 차트 (Plotly) -->
+<script>
+  const groupedBoxplot = {{ grouped_boxplot | tojson | safe }};
+  const boxTraces = Object.entries(groupedBoxplot).map(([label, yVals]) => ({
+    y: yVals.map(Number),
+    name: label,
+    type: 'box',
+    marker: { color: '#04C394' },
+    boxpoints: 'outliers',  // 이상치 자동 표시
+    line: { width: 1.5 },
+    boxmean: false
+  }));
+
+  const boxplotLayout = {
+  title: {
+    text: '감기 vs NO₂ (Outlier만 표시한 Boxplot)',
+    font: { size: 16 }
+  },
+  boxmode: 'overlay',
+  yaxis: {
+    title: {
+      text: '감기 발생건수',
+      font: { size: 14 }
+    }
+  },
+  xaxis: {
+    title: '농도 구간',
+    categoryorder: 'array',
+    categoryarray: ['낮음', '중간', '높음']
+  },
+  margin: { l: 60, r: 40, t: 60, b: 60 }
+};
+
+Plotly.newPlot('boxplot-chart1', boxTraces, boxplotLayout);
+
+</script>
+
+
+  
+</body>
+
 
 {% endblock %}
 
