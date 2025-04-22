@@ -30,7 +30,8 @@ def kbCharts_async():
     
     type = request.args.get('type')
     year = request.args.get('years')
-    rows = data_util.select_chart_data(type,year)
+    radio = request.args.get('radio')
+    rows = data_util.select_chart_data(type,year,radio)
 
     return jsonify(rows)
 
@@ -309,5 +310,15 @@ def age_infection_rate_api():
         'data': age_confirm_rate['확진률'].round(3).tolist()
     })
 
+# 성별 사망률, 확진률 
+@charts_bp.route('/api/gender-stats')
+def gender_stats_api():
+    # 성별 비율 수치
+    gender_data = {
+        "labels": ["여성", "남성"],
+        "infection_rate": [54, 46],
+        "death_rate": [50.6, 49.4]
+    }
+    return jsonify(gender_data)
 
 #######################yunhwan end #####################################################################

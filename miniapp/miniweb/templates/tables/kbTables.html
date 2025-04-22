@@ -106,6 +106,8 @@
                                     지역별토지면적
                                     {% elif tableNm == "diseaseByArea" %}
                                     토지별질병통계
+                                    {% elif tableNm == "riskByArea" %}
+                                    밀집도별위험도통계
                                     {% endif %}
                                     <span class="caret">
                                     </span>
@@ -149,6 +151,11 @@
                                     <li>
                                         <a href="{{url_for('tables.kbTables_with_page', tableNm='diseaseByArea')}}">
                                             토지별질병통계
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('tables.kbTables_with_page', tableNm='riskByArea')}}">
+                                            밀집도별위험도통계
                                         </a>
                                     </li>
                                 </ul>
