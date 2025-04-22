@@ -109,11 +109,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                  <h2>각 변수 상관계수 히트맵</h2>
-                    <div id="chart2"></div>
+                  <h2>성별 확진률 및 사망률</h2>
+                    <div id="chart4"></div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                 
+                  <h2>각 변수 상관계수 히트맵</h2>
+                    <div id="chart2"></div>
                 </div>
             </div>
         </div>
@@ -384,7 +385,73 @@
           chart.render();
         });
     </script>
+    <script>
+      fetch("/charts/api/gender-stats")
+        .then(response => response.json())
+        .then(result => {
+          var options = {
+            series: [{
+              name: '확진자 비율',
+              data: result.infection_rate
+            }, {
+              name: '사망자 비율',
+              data: result.death_rate
+            }],
+            chart: {
+              type: 'bar',
+              height: 450
+            },
+            plotOptions: {
+              bar: {
+                horizontal: false,
+                columnWidth: '55%',
+                borderRadius: 5,
+                borderRadiusApplication: 'end'
+              },
+            },
+            dataLabels: {
+              enabled: true, // 데이터 레이블을 활성화
+              style: {
+                fontSize: '12px',
+                colors: ['#000'] // 레이블 텍스트 색상
+              },
+              formatter: function(val) {
+                return val.toFixed(2) + "%"; // 두 자리까지 반올림하여 비율을 %로 표시
+              },
+              offsetY: -15, // 레이블을 막대 위로 올림
+              align: 'center', // 레이블을 막대 중앙에 배치
+            },
+            stroke: {
+              show: true,
+              width: 2,
+              colors: ['transparent']
+            },
+            xaxis: {
+              categories: result.labels,  // 예: ['여성', '남성']
+            },
+            yaxis: {
+              title: {
+                text: '% (비율)'
+              },
+              max: 100
+            },
+            fill: {
+              opacity: 1
+            },
+            tooltip: {
+              y: {
+                formatter: function(val) {
+                  return val + " %";
+                }
+              }
+            },
+            colors: ['#009B7D', '#FF5722']  // 확진/사망자 컬러
+          };
     
+          var chart = new ApexCharts(document.querySelector("#chart4"), options);
+          chart.render();
+        });
+    </script>
     
 
 
