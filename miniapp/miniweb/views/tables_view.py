@@ -39,6 +39,7 @@ def kbTables_init():
     file_path_diseaseByVisitType = os.path.join(root_path, 'data_files', '질병입원외래별통계.csv')
     file_path_area = os.path.join(root_path, 'data_files', '지역별토지면적.csv')
     file_path_diseaseByArea = os.path.join(root_path, 'data_files', '면적별인구별질병통계.csv')
+    file_path_riskByArea = os.path.join(root_path, 'data_files', '밀집도별질병위험도통계.csv')
 
 
     df_populationByYear = pd.read_csv(file_path_populationByYear)
@@ -50,6 +51,7 @@ def kbTables_init():
     df_area = pd.read_csv(file_path_area)
     df_area = df_area[['PRD_DE','lcName','DT','UNIT_NM_ENG']]
     df_diseaseByArea = pd.read_csv(file_path_diseaseByArea)
+    df_riskByArea = pd.read_csv(file_path_riskByArea)
 
     
     df_list = [
@@ -61,6 +63,7 @@ def kbTables_init():
                 {'df_diseaseByVisitType' : df_diseaseByVisitType},
                 {'df_area' : df_area},
                 {'df_diseaseByArea' : df_diseaseByArea},
+                {'df_riskByArea' : df_riskByArea},
                 ]
     
     for data in df_list:
@@ -127,7 +130,7 @@ def ysTables_init():
         data_util.insert_ColdandTem_data(data)
         
     # data = df_diseaseByPopulation.values.tolist() # pymysql ... executemany가 list, tuple 만 처리
-
+    print("!!!!!!!")
     return redirect(url_for('main.index'))
 
 

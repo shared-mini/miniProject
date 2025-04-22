@@ -27,6 +27,10 @@ def create_table():
         cursor.execute(sql)
         sql = """drop table if exists area"""
         cursor.execute(sql)
+        sql = """drop table if exists diseaseByArea"""
+        cursor.execute(sql)
+        sql = """drop table if exists riskByArea"""
+        cursor.execute(sql)
 
         # 연도별인구통계
         sql = """create table if not exists populationByYear
@@ -138,6 +142,20 @@ def create_table():
                 );"""
         cursor.execute(sql)
 
+        # 밀집도별위험도
+        sql = """create table if not exists riskByArea
+                (
+                    years int not null
+                    ,lcName varchar(100) not null
+                    ,populationTot int not null
+                    ,ptntCnt int not null
+                    ,dt BIGINT not null
+                    ,populationDensity float not null
+                    ,incidenceRate float not null
+                    ,risk float
+                );"""
+        cursor.execute(sql)
+
     except Exception as e:
         print('테이블 생성 실패', e)
     finally:
@@ -147,7 +165,7 @@ def create_table():
             conn.close()
 
 
-
+# 데이터 삽입
 def insert_data(data):
     try:
         conn = pymysql.connect(host="localhost", 
@@ -189,6 +207,10 @@ def insert_data(data):
             sql = "insert into diseaseByArea values (%s, %s, %s, %s, %s, %s, %s)"
             cursor.executemany(sql, data.get('df_diseaseByArea').values.tolist())
 
+        if 'df_riskByArea' in data:
+            sql = "insert into riskByArea values (%s, %s, %s, %s, %s, %s, %s, %s)"
+            cursor.executemany(sql, data.get('df_riskByArea').values.tolist())
+
         conn.commit()
 
     except Exception as e:
@@ -215,7 +237,8 @@ def select_by_page(tableNm):
         cursor.execute(sql)
         rows = cursor.fetchall()
     except Exception as e:
-        print('데이터 저장 실패', e)
+        print('데이터 조회 실패', e)
+        print("tableNm=="+tableNm)
     finally:
         if cursor:
             cursor.close()
@@ -224,31 +247,8 @@ def select_by_page(tableNm):
 
     return rows
 
-# 전체 데이터 조회
-# def select_count(tableNm):
-#     cnt = None
-#     try:
-#         conn = pymysql.connect(host="localhost", 
-#                                database='miniwebs', 
-#                                user='humanda5', 
-#                                password='humanda5')
-        
-#         cursor = conn.cursor()
 
-#         sql = f"select count(*) from {tableNm}"
-#         cursor.execute(sql)
-#         rows = cursor.fetchone()
-#     except Exception as e:
-#         print('조회 실패', e)
-#     finally:
-#         if cursor:
-#             cursor.close()
-#         if conn:
-#             conn.close()
-
-#     return rows[0]
-
-
+# 컬럼 조회
 def select_column(tableNm):
     rows = None
     try:
@@ -295,7 +295,7 @@ def select_chart_years():
     return rows
 
 
-def select_chart_data(type,year):
+def select_chart_data(type,year,radio):
     rows = None
     try:
         conn = pymysql.connect(host="localhost", 
@@ -304,16 +304,68 @@ def select_chart_data(type,year):
                                password='humanda5')
         
         cursor = conn.cursor()
-        if type == "heatmap":
-            if year != 'all':
-                sql = f"SELECT * FROM diseasebypopulation where years = {year} order by populationTot"
-            if year == 'all':
-                sql = "SELECT * FROM diseasebypopulation order by populationTot"
-        if type == "bar":
-            if year != 'all':
-                sql = f"SELECT * FROM diseasebypopulation where years = {year} order by populationTot desc"
-            if year == 'all':
-                sql = "SELECT 1, 2, sum(populationTot), sum(ptntCnt), (sum(ptntCnt)/sum(populationTot)), lcName FROM diseasebypopulation group by lcName order by sum(populationTot) desc"
+        print("radio==" , radio)
+        print("type==" , type)
+        print("year==" , year)
+
+        if radio == "population":
+            if type == "heatmap":
+                if year != 'all':
+                    sql = f"SELECT * FROM diseasebypopulation where years = {year} order by populationTot"
+                if year == 'all':
+                    sql = "SELECT * FROM diseasebypopulation order by populationTot"
+            if type == "bar":
+                if year != 'all':
+                    sql = f"SELECT * FROM diseasebypopulation where years = {year} order by populationTot desc"
+                if year == 'all':
+                    sql = "SELECT 1, 2, sum(populationTot), sum(ptntCnt), (sum(ptntCnt)/sum(populationTot)), lcName FROM diseasebypopulation group by lcName order by sum(populationTot) desc"
+
+
+        if radio == "area":
+            if type == "heatmap":
+                if year != 'all':
+                    sql = f"SELECT years,lcName,dt,2,incidenceRate,concat(lcName,' ',area) FROM diseasebyarea where years = {year} order by dt"
+                if year == 'all':
+                    sql = "SELECT years, lcName, round(avg(ptntCnt)), round(avg(dt)), round(avg(ptntCnt)/avg(dt),6) FROM diseasebyarea group by years,lcName order by round(avg(dt))"
+            if type == "bar":
+                if year != 'all':
+                    sql = f"SELECT * FROM diseasebyarea where years = {year} order by dt"
+                if year == 'all':
+                    # sql = "SELECT 1,lcName, round(avg(ptntCnt)), round(avg(dt)),2, concat(round(avg(dt)), '㎡'), round(avg(ptntCnt)/avg(dt),6) FROM diseasebyarea group by lcName"
+                    sql = "SELECT * FROM diseasebyarea"
+
+        if radio == "risk":
+            if type == "heatmap":
+                if year != 'all':
+                    sql = f"select years,lcName,1,2,risk,concat(lcName,' ',populationDensity) from riskbyarea where years = {year} order by populationDensity"
+                if year == 'all':
+                    sql = """
+                            SELECT 
+                            A.years,
+                            concat(A.lcName,' ',ROUND(B.avg_density,6)),
+                            A.populationTot,
+                            A.populationDensity,
+                            A.risk,
+                            A.dt,
+                            B.avg_density
+                        FROM riskbyarea A
+                        JOIN (
+                            SELECT 
+                                lcName,
+                                AVG(populationDensity) AS avg_density
+                            FROM riskbyarea
+                            GROUP BY lcName
+                        ) B ON A.lcName = B.lcName
+                        ORDER BY B.avg_density
+                        """
+            if type == "bar":
+                if year != 'all':
+                    sql = f"SELECT * FROM riskbyarea where years = {year}"
+                if year == 'all':
+                    sql = "SELECT * FROM riskbyarea"
+
+
+        print(sql)
         cursor.execute(sql)
         rows = cursor.fetchall()
     except Exception as e:
@@ -478,7 +530,7 @@ def select_ColdandTem():
         cursor.execute(sql)
         rows = cursor.fetchall()
     except Exception as e:
-        print('데이터 저장 실패', e)
+        print('데이터 조회 실패', e)
     finally:
         if cursor:
             cursor.close()
@@ -530,7 +582,7 @@ def select_ColdandTem_count():
             return cnt[0]
         return 0
     except Exception as e:
-        print('데이터 조회 실패', e)
+        print('데이터 조회(카운터) 실패', e)
     finally:
         if cursor:
             cursor.close()

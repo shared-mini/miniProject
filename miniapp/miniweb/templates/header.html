@@ -21,6 +21,7 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul class="mobile-menu-nav">
+                            {% if session.get('loginuser') %}
                             <li><a data-toggle="collapse" data-target="#demolibra" href="#">Charts</a>
                                 <ul id="demolibra" class="collapse dropdown-header-top">
                                     <li><a href="{{url_for('charts.kb')}}">경보 차트</a></li>
@@ -34,8 +35,13 @@
                                     <li><a href="data-table.html">Data Table</a></li>
                                 </ul>
                             </li>
+                            {% endif %}
                             <li>
+                                {% if session.get('loginuser') %}
+                                <a data-toggle="collapse" data-target="#Pagemob" href="{{ url_for('auth.logout')}}">LogOut</a>
+                                {% else %}
                                 <a data-toggle="collapse" data-target="#Pagemob" href="{{ url_for('auth.login')}}">Login Register</a>
+                                {% endif %}
                             </li>
                         </ul>
                     </nav>
@@ -51,12 +57,18 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
+                    {% if session.get('loginuser') %}
                     <li><a data-toggle="tab" href="#Charts"><i class="notika-icon notika-bar-chart"></i> Charts</a>
                     </li>
                     <li><a data-toggle="tab" href="#Tables"><i class="notika-icon notika-windows"></i> Tables</a>
                     </li>
+                    <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> LogOut</a>
+                    </li>
+                    {% else %}
                     <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Login Register</a>
                     </li>
+                    {% endif %}
+                    
                 </ul>
                 <div class="tab-content custom-menu-content">
                     <div id="Charts" class="tab-pane notika-tab-menu-bg animated flipInX">
@@ -80,7 +92,12 @@
                     </div>
                     <div id="Page" class="tab-pane notika-tab-menu-bg animated flipInX">
                         <ul class="notika-main-menu-dropdown">
-                            <li><a href="{{ url_for('auth.login')}}">Login Register</a>
+                            <li>
+                                {% if session.get('loginuser') %}
+                                <a href="{{ url_for('auth.logout')}}">LogOut</a>
+                                {% else %}
+                                <a href="{{ url_for('auth.login')}}">Login Register</a>
+                                {% endif %}
                             </li>
                         </ul>
                     </div>

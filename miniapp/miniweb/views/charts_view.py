@@ -30,7 +30,8 @@ def kbCharts_async():
     
     type = request.args.get('type')
     year = request.args.get('years')
-    rows = data_util.select_chart_data(type,year)
+    radio = request.args.get('radio')
+    rows = data_util.select_chart_data(type,year,radio)
 
     return jsonify(rows)
 
