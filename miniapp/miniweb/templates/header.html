@@ -79,6 +79,8 @@
                     <li><a data-toggle="tab" href="#Page"><i class="notika-icon notika-support"></i> Login Register</a>
                     </li>
                     {% endif %}
+                    <li><a data-toggle="tab" href="#Forms"><i class="notika-icon notika-form"></i> 건강해조</a>
+                    </li>
                     
                 </ul>
                 <div class="tab-content custom-menu-content">
@@ -115,6 +117,12 @@
                                 {% else %}
                                 <a href="{{ url_for('auth.login')}}">Login Register</a>
                                 {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="Forms" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <ul class="notika-main-menu-dropdown">
+                            <li><a href="{{ url_for('main.wizard')}}">건강해조</a>
                             </li>
                         </ul>
                     </div>

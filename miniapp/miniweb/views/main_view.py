@@ -11,5 +11,10 @@ def index():
     # 응답 컨텐츠 생산
     return render_template('index.html')
 
-
+@main_bp.route("/wizard", methods=['GET'])
+def wizard():
+    # 요청 데이터 읽기
+    # 요청 처리
+    # 응답 컨텐츠 생산
+    return render_template('wizard.html')
 

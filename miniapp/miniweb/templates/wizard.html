@@ -1,0 +1,263 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Wizard | Notika - Notika Admin Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- font awesome CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/owl.carousel.css">
+    <link rel="stylesheet" href="/static/css/owl.theme.css">
+    <link rel="stylesheet" href="/static/css/owl.transitions.css">
+    <!-- meanmenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/meanmenu/meanmenu.min.css">
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/normalize.css">
+	<!-- wave CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/wave/waves.min.css">
+    <link rel="stylesheet" href="/static/css/wave/button.css">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- Notika icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/notika-custom-icon.css">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/main.css">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <!-- modernizr JS
+		============================================ -->
+    <script src="/static//static/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Start Header Top Area -->
+    {% include "header.html" %}
+    <!-- Wizard area Start-->
+    <div class="wizard-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wizard-wrap-int">
+                        <div class="wizard-hd">
+                            <h1 style="text-align: center;">건강해조!!</h1>
+                            <br>
+                            <p>
+                                우리 팀의 프로젝트 「건강과 환경적 요인의 상관관계 분석」은 현대 사회에서 점점 심화되고 있는 환경 변화가 인간의 건강에 미치는 영향을 데이터 기반으로 규명하고자 하는 학제적 시도입니다. 특히 대기오염, 기후 변화, 도시화 등 환경적 요인과 다양한 질병 간의 잠재적 연관성을 통계적 분석과 시각화 기법을 통해 실증적으로 탐색하는 데 중점을 두고 있습니다.
+                                <br>
+                                <br>
+                                현대인은 급변하는 사회적, 환경적 조건 속에서 생존하고 있으며, 이로 인한 건강 리스크는 점차 복합적이고 구조적으로 얽히는 양상을 보이고 있습니다. 본 프로젝트는 이러한 맥락에서 건강과 환경의 접점에서 발생하는 현상들을 과학적 분석틀 안에서 체계적으로 해석하고, 나아가 그 인과적 관계를 탐색함으로써 공공 보건 향상에 기여하고자 합니다.
+                                <br>
+                                <br>
+                                총 3인의 팀원은 각기 다른 환경 요인을 중심으로 분석을 수행하였으며, 각자의 분석 주제는 해당 변수와 건강 데이터 간의 상관관계를 심층적으로 조망할 수 있도록 설계되었습니다. 분석 과정에서는 국가 공공데이터 포털 및 기타 신뢰성 높은 출처로부터 데이터를 수집한 후, 결측치 처리, 이상치 제거, 정규화 등의 전처리 과정을 거쳤습니다. 이후 시계열 분석, 상관계수 측정, 클러스터링, BoxPlot 및 Heatmap 시각화 등 다양한 탐색적 데이터 분석 기법을 적용하여 데이터의 내재된 패턴과 변수 간의 관계를 명확히 드러내고자 하였습니다.
+                                <br>
+                                <br>
+                                특히, 분석 결과는 단순한 수치 제시를 넘어서 직관적이고 상호작용이 가능한 웹 기반 대시보드로 구현되어, 사용자가 시간대별·지역별로 질병과 환경요인의 상관성을 탐색할 수 있도록 시각적으로 구성하였습니다. 이러한 접근은 비전문가도 데이터로부터 의미 있는 인사이트를 쉽게 도출할 수 있도록 돕는 동시에, 실제 보건 정책 입안자들에게도 실질적인 참고자료로서의 가능성을 제시합니다.
+                                <br>
+                                <br>
+                                본 프로젝트는 환경 건강 분야의 데이터 분석이 단순한 통계 작업을 넘어, 사회적 가치 창출과 공공의 건강 증진에 실질적으로 기여할 수 있는 도구로 발전할 수 있음을 실험한 데 의의가 있습니다. 앞으로도 데이터 기반의 통합적 접근을 통해 건강과 환경 간 복잡한 관계를 지속적으로 해석하고, 보다 나은 사회를 위한 기초 자료를 축적해 나가고자 합니다.
+                            </p>
+                        </div>
+                        <div id="rootwizard">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <div class="container-pro wizard-cts-st">
+                                        <ul>
+                                            <li><a href="#tab1" data-toggle="tab">경보</a></li>
+                                            <li><a href="#tab2" data-toggle="tab">영서</a></li>
+                                            <li><a href="#tab3" data-toggle="tab">윤환</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane wizard-ctn" id="tab1">
+                                    <p>
+                                        인구 밀집도와 사회적 거리두기 수준이 감염병의 전파 양상 및 건강 지표에 미치는 영향을 다각적으로 조망하고자 하였습니다. 특히 단순한 감염자 수의 비교를 넘어, 인구 수 대비 발병률, 지역별 면적을 고려한 공간적 발병 밀도, 그리고 연도별 인구 변화에 따른 상대적 영향력의 변화 등을 종합적으로 고려함으로써, 보다 정교하고 입체적인 해석을 시도하였습니다.
+                                        <br>
+                                        <br>
+                                        우선, 인구 밀집도는 특정 지역 내 인구가 얼마나 밀집되어 있는지를 나타내는 대표적인 지표로, 밀집도가 높을수록 접촉 확률이 증가하여 감염병의 확산 가능성이 높아질 수 있습니다. 이에 따라 본 연구에서는 각 지역의 인구 밀집도를 기반으로 감염병 발생률과의 상관관계를 분석하였으며, 특히 대도시권에서의 발병률 증가 패턴이 어떻게 드러나는지를 심층적으로 탐색하였습니다.
+                                        <br>
+                                        <br>
+                                        또한, 단순 감염자 수 지표는 지역 간 비교에 한계를 가지므로, 연도별 인구수에 비례한 표준화 발병률(Standardized Incidence Rate)을 도입하였습니다. 이를 통해 연도별 인구 증가나 감소와 무관하게 각 지역의 상대적 발병 수준을 정량적으로 비교할 수 있도록 하였습니다. 이와 함께, 각 지역의 행정구역 면적을 고려한 발병률 밀도 분석도 수행하여, 인구와 면적의 조합이 감염병 확산에 미치는 공간적 영향력을 파악하였습니다.
+                                        <br>
+                                        <br>
+                                        특히, 이러한 지표들을 시계열적으로 분석함으로써, 사회적 거리두기 정책이 시행되었던 특정 시점에서 발병률이 어떻게 변화하였는지, 인구밀도와의 상호작용 속에서 정책 효과가 지역별로 얼마나 상이하게 나타났는지를 구체적으로 조망할 수 있었습니다.
+                                        <br>
+                                        <br>
+                                        전반적으로 본 분석은 인구 밀집도와 사회적 거리두기, 인구수 및 면적 요소가 복합적으로 작용하여 감염병 전파에 영향을 미친다는 가설을 실증적으로 검토하였으며, 이를 통해 감염병 예방 및 대응 전략 수립에 있어 공간 기반 데이터 분석의 중요성을 부각시키는 데 그 의의를 둡니다. 이러한 접근은 향후 지역 맞춤형 방역 정책 수립과 공공 보건 자원 배분의 효율성 제고에 기여할 수 있는 실질적인 인사이트를 제공할 것입니다.
+                                    </p>
+                                    <p class="wizard-mg-ctn">
+                                        
+                                    </p>
+                                </div>
+                                <div class="tab-pane wizard-ctn" id="tab2">
+                                    <p>
+                                        대기오염 지표(미세먼지, 이산화질소 등) 및 일교차 데이터를 중심으로, 계절별 변화에 따른 감기 발생 건수의 변동성과의 상관관계를 중점적으로 탐색하였습니다. 최근 환경 요인의 건강 영향에 대한 사회적 관심이 높아지는 가운데, 본 연구는 공기 질과 기후 변동성이 급성 호흡기 질환, 특히 감기의 발생 양상에 미치는 영향을 계량적으로 규명하고자 하였습니다.
+                                        <br>
+                                        <br>
+                                        먼저, 대기오염 지표 중 대표적인 오염 물질인 PM10(미세먼지) 및 NO₂(이산화질소) 농도 데이터를 수집하여, 월별 평균 및 최고치 기준으로 분석을 수행하였습니다. 이들 대기오염 물질은 호흡기 점막을 자극하거나 면역력을 저하시키는 주요 요인으로 알려져 있으며, 감기와 같은 상기도 감염의 발생률에 밀접한 연관을 보입니다. 특히 도심지와 산업 밀집 지역에서의 대기질 저하 현상이 감기 환자 수에 어떠한 영향을 미치는지를 지역 단위로 정량화하였습니다.
+                                        <br>
+                                        <br>
+                                        또한, 일교차는 기온의 일간 변동성을 나타내는 기후 지표로, 큰 일교차는 체온 조절 능력의 저하를 유발하고 면역 체계에 부담을 주어 감기 발병 위험을 증가시키는 것으로 알려져 있습니다. 이에 따라 본 분석에서는 일교차 지표와 감기 발생 건수 간의 상관성을 계절별로 분리하여 분석함으로써, 봄/가을과 같이 일교차가 극심한 시기의 건강 리스크를 정밀하게 추적하였습니다.
+                                        <br>
+                                        <br>
+                                        더불어, 시계열 분석 및 상관계수 행렬 시각화, 시즌 분해(Time Series Decomposition) 기법을 활용하여 감기 발생률이 단순히 계절적 요인에 따른 것인지, 또는 대기오염 및 기후적 스트레스 요인의 영향을 동시에 받고 있는지를 복합적으로 분석하였습니다. 특히, 특정 시기에 대기질 악화 및 큰 일교차가 동시에 나타났을 때 감기 건수가 급증하는 패턴을 도출하여, 복합 환경 요인에 대한 건강 취약성도 함께 조명하였습니다.
+                                        <br>
+                                        <br>
+                                        궁극적으로, 본 분석은 감기와 같은 비교적 일상적인 질환조차도 환경 조건에 민감하게 반응한다는 점을 실증적으로 보여주며, 향후 환경 건강 모니터링 체계 구축 및 기후 기반 질병 예측 시스템 개발에 기초 자료로서 활용될 수 있는 통찰을 제공합니다. 특히, 대기질 개선과 기후 안정화 정책이 단순한 환경 관리 차원을 넘어, 국민 건강 증진에도 기여할 수 있는 과학적 근거를 마련하였다는 데 본 연구의 의의가 있습니다.
+                                    </p>
+                                    <p class="wizard-mg-ctn">
+                                        
+                                    </p>
+                                </div>
+                                <div class="tab-pane wizard-ctn" id="tab3">
+                                    <p>
+                                        코로나19 확진률과 관련된 다차원적 데이터를 기반으로, 연령대별, 성별, 지역별 요인이 감염률에 미치는 영향을 다각도로 탐색하였습니다. 팬데믹이라는 전례 없는 보건 위기 상황 속에서, 감염병의 확산 양상이 단순히 바이러스 자체의 특성뿐 아니라 인구사회학적 변수 및 지역적 조건에 의해 복합적으로 형성된다는 가설을 실증적으로 분석하고자 하였습니다.
+                                        <br>
+                                        <br>
+                                        우선, 연령대별 분석에서는 고령층과 청장년층 간의 확진률 격차에 주목하였습니다. 고령층은 면역 저하 및 기저질환의 유병률이 높아 감염에 취약한 반면, 청장년층은 사회적 활동성이 높아 감염 노출 기회가 많은 양상을 보이는 등, 서로 다른 감염 메커니즘이 작동함을 확인하였습니다. 이를 위해 확진률을 연령별 인구수 대비 비율로 정규화하고, 시간 흐름에 따른 변화 추이를 함께 분석하여 연령별 감염 민감도를 시계열적으로 파악하였습니다.
+                                        <br>
+                                        <br>
+                                        성별 차원에서는 남성과 여성 간의 감염률 격차와 더불어, 각 성별이 주로 종사하는 산업군이나 사회적 접촉 패턴이 감염 확산에 어떤 영향을 주는지를 정성적 자료와 병행하여 분석하였습니다. 일부 연령대에서는 여성 확진률이 높게 나타났으며, 이는 사회적 돌봄 노동이나 의료·교육 분야에의 종사 비율 등 구조적 요인과 연계하여 해석할 수 있습니다.
+                                        <br>
+                                        <br>
+                                        지역별 분석에서는 광역 시도 단위로 확진률의 공간적 분포를 시각화하고, 인구 밀도, 지역 내 이동량, 보건 의료 인프라 밀도, 사회적 거리두기 수준 등과의 상관관계를 중점적으로 탐색하였습니다. 특히 도시화율이 높은 지역일수록 확산 속도가 빠르며, 인구 밀집도가 높고 사회적 접촉 가능성이 큰 지역에서 상대적으로 높은 감염률을 보이는 경향이 확인되었습니다. 이를 위해 발병률을 인구수, 면적 대비 지표로 정규화하고, 지역별 상관계수 heatmap 및 시도별 시계열 비교 그래프를 통해 지역 간 위험도 차이를 구조적으로 분석하였습니다.
+                                        <br>
+                                        <br>
+                                        이러한 분석은 단순히 감염자 수를 파악하는 데 그치지 않고, 감염 취약 인구 집단의 특성과 위험 요인을 구체적으로 파악함으로써, 향후 맞춤형 방역 정책 수립 및 지역 기반 보건 자원 배분 전략에 필요한 과학적 근거를 제시한다는 점에서 실질적인 의의가 있습니다. 나아가, 팬데믹과 같은 감염병 위기 상황에서 데이터 기반 공공의사결정의 중요성을 강조하며, 실시간 건강 위험 예측 시스템의 필요성을 시사합니다.
+                                    </p>
+                                    <p class="wizard-mg-ctn">
+                                        
+                                    </p>
+                                </div>
+                               
+                                <div class="wizard-action-pro">
+                                    <ul class="wizard-nav-ac">
+                                        <li><a class="button-first a-prevent" href="#"><i class="notika-icon notika-more-button"></i></a></li>
+                                        <li><a class="button-previous a-prevent" href="#"><i class="notika-icon notika-back"></i></a></li>
+                                        <li><a class="button-next a-prevent" href="#"><i class="notika-icon notika-next-pro"></i></a></li>
+                                        <li><a class="button-last a-prevent" href="#"><i class="notika-icon notika-more-button"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wizard area End-->
+    <!-- Start Footer area-->
+    <div class="footer-copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="footer-copy-right">
+                        <p>Copyright © 2018 
+. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer area-->
+    <!-- jquery
+		============================================ -->
+    <script src="/static/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="/static/js/wow.min.js"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="/static/js/jquery-price-slider.js"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="/static/js/jquery.scrollUp.min.js"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="/static/js/meanmenu/jquery.meanmenu.js"></script>
+    <!-- counterup JS
+		============================================ -->
+    <script src="/static/js/counterup/jquery.counterup.min.js"></script>
+    <script src="/static/js/counterup/waypoints.min.js"></script>
+    <script src="/static/js/counterup/counterup-active.js"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="/static/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- sparkline JS
+		============================================ -->
+    <script src="/static/js/sparkline/jquery.sparkline.min.js"></script>
+    <script src="/static/js/sparkline/sparkline-active.js"></script>
+    <!-- flot JS
+		============================================ -->
+    <script src="/static/js/flot/jquery.flot.js"></script>
+    <script src="/static/js/flot/jquery.flot.resize.js"></script>
+    <script src="/static/js/flot/flot-active.js"></script>
+    <!-- knob JS
+		============================================ -->
+    <script src="/static/js/knob/jquery.knob.js"></script>
+    <script src="/static/js/knob/jquery.appear.js"></script>
+    <script src="/static/js/knob/knob-active.js"></script>
+    <!--  Chat JS
+		============================================ -->
+    <script src="/static/js/chat/jquery.chat.js"></script>
+    <!--  wizard JS
+		============================================ -->
+    <script src="/static/js/wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="/static/js/wizard/wizard-active.js"></script>
+    <!--  todo JS
+		============================================ -->
+    <script src="/static/js/todo/jquery.todo.js"></script>
+	<!--  wave JS
+		============================================ -->
+    <script src="/static/js/wave/waves.min.js"></script>
+    <script src="/static/js/wave/wave-active.js"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="/static/js/plugins.js"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="/static/js/main.js"></script>
+	<!-- tawk chat JS
+		============================================ -->
+    <script src="/static/js/tawk-chat.js"></script>
+</body>
+
+</html>
