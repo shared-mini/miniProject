@@ -245,9 +245,18 @@
         <div class="flot-chart-wp">
             <h2 class="title" style="font-size: 18px;">감기 vs 이산화질소 농도 구간에 따른 발생건수 분포</h2>
             <div id="boxplot-chart1" class="chart-block"></div>
+            <hr>
+            <div id="pvalue-results"></div>
         </div>
+        
       </div>
-    </div>
+
+      <!-- t검정 -->
+      <!-- <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div id="pvalue-results"></div>
+        </div>
+    </div> -->
 
   </div>
 </div>
@@ -850,7 +859,27 @@ Plotly.newPlot('boxplot-chart1', boxTraces, boxplotLayout);
 
 </script>
 
-
+<script>
+  fetch('/charts/api/pvalue-test')
+    .then(response => response.json())
+    .then(data => {
+      let html = "<div class='table-responsive'>";
+      html += '<table id="data-table-basic" class="table table-striped">'
+      html += '<thead><tr><th class="text-center">조합</th><th class="text-center">p-value</th><th class="text-center">유의미 여부</th></tr></thead>';
+      html += '<tbody>';
+      data.forEach(row => {
+        html += `<tr>
+                   <td>${row.조합}</td>
+                   <td>${row.p_value}</td>
+                   <td style="color:${row.유의미 ? 'green' : 'gray'}">${row.유의미 ? '✔️' : '❌'}</td>
+                 </tr>`;
+      });
+      html += '</tbody>';
+      html += '</table>';
+      html += '</div>';
+      document.getElementById('pvalue-results').innerHTML = html;
+    });
+  </script>
   
 </body>
 

@@ -49,6 +49,9 @@ def kbCharts_async():
 
 ###################################### Yeongseo's AREA Start #####################################
 
+base_dir = Path(__file__).resolve().parents[1]
+data_dir = base_dir / "data_files"
+
 from pathlib import Path
 import pandas as pd
 
@@ -234,6 +237,32 @@ def ys():
                            grouped_boxplot=grouped_data,
                            outlier_only=outlier_data_only
                            )
+
+# t 검정
+    
+from scipy.stats import ttest_ind
+
+@charts_bp.route("/api/pvalue-test")
+def pvalue_test():
+    df = pd.read_csv(data_dir / "감기_lag1_대기오염.csv")
+    df['농도구간'] = pd.cut(df["이산화질소농도(ppm)"],
+                          bins=[0, 0.015, 0.025, 0.04],
+                          labels=["낮음", "중간", "높음"])
+    
+    results = []
+    levels = df['농도구간'].dropna().unique()
+    for i in range(len(levels)):
+        for j in range(i+1, len(levels)):
+            g1 = df[df['농도구간'] == levels[i]][df.columns[0]]
+            g2 = df[df['농도구간'] == levels[j]][df.columns[0]]
+            stat, pval = ttest_ind(g1, g2, equal_var=False)
+            results.append({
+                '조합': f"{levels[i]} vs {levels[j]}",
+                'p_value': f"{pval:.2e}",  # 지수표기
+                '유의미': "✔️" if pval < 0.05 else "❌"
+            })
+
+    return jsonify(results)
 
 
 
